@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="">
+	<head>
+		<title>赞赏</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="js/lib/mui/css/mui.min.css" />
+		<link rel="stylesheet" href="js/lib/swiper/swiper.min.css">
+		<link rel="stylesheet" type="text/css" href="js/lib/mui/css/icons-extra.css" />
+		<link rel="stylesheet" href="css/app.css" />
+		<style>
+			.mui-bar {
+				background: #fff;
+			}
+			.mui-bar .mui-pull-left .mui-icon {
+				padding-right: 5px;
+				font-size: 28px;
+			}
+			.mui-bar .mui-btn {
+				font-weight: normal;
+				font-size: 17px;
+			}
+			.mui-bar .mui-btn-link {
+				top: 1px;
+			}
+
+			.page-pack {
+				position: absolute;
+				top: 43px;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				overflow-y: auto;
+				overflow-x: hidden;
+				background: #f7f7f7;
+			}
+
+			.give-page .all-pack {
+				margin-bottom: 10px;
+			}
+
+
+
+			.give-page .all-pack .info-pack {
+				width: 100%;
+				height: auto;
+				position: relative;
+				top: 5px;
+				margin-bottom: 10px;
+				display: -webkit-flex;
+				display: flex;
+			}
+
+			.give-page .all-pack .left-pack {
+				height: auto;
+				width: 90%;
+				display: -webkit-flex;
+				display: flex;
+			}
+
+			.give-page .all-pack .left-pack .portrait-pack {
+				height: auto;
+				width: 60px;
+			}
+
+			.give-page .all-pack .left-pack .portrait-pack img {
+				height: 48px;
+				width: 48px;
+				margin-top: 6px;
+				margin-left: 15px;
+				border-radius: 50%;
+			}
+
+			.give-page .all-pack .left-pack .p-info-pack {
+				margin-left: 10px;
+			}
+
+			.give-page .all-pack .left-pack .p-info-pack .name-pack {
+				font-size: 16px;
+				height: 35px;
+				line-height: 45px;
+				color: #333;
+			}
+
+			.give-page .all-pack .left-pack .p-info-pack .phone-pack {
+				font-size: 14px;
+				height: auto;
+				line-height: 23px;
+				color: #999;
+			}
+
+			.give-page .all-pack .right-pack {
+				font-size: 14px;
+				width: 10%;
+				padding-right: 10px;
+				display: -webkit-flex;
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+			}
+
+			.give-page .all-pack .right-pack span {
+				font-size: 14px;
+			}
+
+			.give-page .all-pack .poll-pack {
+				background: #fff;
+				padding: 10px;
+				margin-bottom: 10px;
+			}
+
+			.give-page .all-pack .poll-pack .desc-pack {
+				color: #c59c51;
+				font-size: 14px;
+				border-bottom: 1px solid #eae9ea;
+				padding-bottom: 10px;
+			}
+
+			.give-page .all-pack .poll-pack .mui-table-view {
+				background: #fff;
+				border: 0px solid #fff!important;
+			}
+			.give-page .all-pack .poll-pack .mui-table-view-cell {
+				border: 0px solid #fff!important;
+			}
+
+			.give-page .all-pack .poll-pack .mui-table-view-cell span {
+				font-size: 14px;
+				margin-bottom: 5px;
+			}
+
+
+
+
+			.give-page .all-pack .content-pack {
+				background: #fff;
+				padding: 10px;
+			}
+
+			.give-page .all-pack .content-pack .desc-pack {
+				color: #c59c51;
+				font-size: 14px;
+				border-bottom: 1px solid #eae9ea;
+				padding-bottom: 10px;
+			}
+
+			.give-page .all-pack .content-pack .mui-table-view {
+				background: #fff;
+				border: 0px solid #fff!important;
+			}
+			.give-page .all-pack .content-pack .mui-table-view-cell {
+				border: 0px solid #fff!important;
+			}
+
+			.give-page .all-pack .content-pack .mui-table-view-cell img {
+				width: 42px;
+				height: 42px;
+			}
+
+			.give-page .all-pack .number-pack {
+				background: #fff;
+				font-size: 14px;
+				margin-top: 10px;
+				padding: 5px 10px;
+				display: -webkit-flex; /* Safari */
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.give-page .all-pack .number-pack .label-pack {
+				color: #c59c51;
+				width: 60%;
+			}
+
+			.give-page .all-pack .number-pack .value-pack {
+				padding-left: 5px;
+				width: 40%;
+			}
+
+			.give-page .all-pack .number-pack div select {
+				padding: 10px;
+				background: #ddf4ee;
+				margin-bottom: 0px;
+				font-size: 14px;
+				color: #000;
+			}
+
+			.give-page .all-pack .btn-pack {
+				margin-top: 10px;
+				padding: 0 10px;
+				display: -webkit-flex;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.give-page .all-pack .btn-pack .mall-pack {
+				 width: 50%;
+				 padding-right: 5px;
+			}
+
+			.give-page .all-pack .btn-pack .mall-pack .mui-btn-block {
+				background: #FEAE1B;
+			}
+
+			.give-page .all-pack .btn-pack .submit-pack {
+				width: 50%;
+				padding-left: 5px;
+			}
+
+			.give-page .all-pack .btn-pack .submit-pack .mui-btn-block {
+				background: #FF4351;
+			}
+
+			.give-page .all-pack .mui-btn-block {
+				font-size: 14px;
+				display: block;
+				width: 100%;
+				margin-bottom: 10px;
+				padding: 10px 0;
+				border: 0px solid #fff;
+				background: #1ec622;
+				color: #fff;
+			}
+
+		</style>
+	</head>
+	<body>
+		<!-- 赠送礼物页面 -->
+		<div id="give_page" class="give-page">
+			<header id="header" class="mui-bar mui-bar-nav">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+				<h1 class="mui-title">赞赏</h1>
+			</header>
+			<div class="page-pack">
+				<div class="all-pack">
+					<!-- 个人信息 -->
+					<div class="info-pack">
+						<div class="left-pack">
+							<div class="portrait-pack">
+								<img id="portrait" src="i/portrait.png">
+							</div>
+							<div class="p-info-pack">
+								<div id="name" class="name-pack"></div>
+								<div id="introduce" class="phone-pack"></div>
+							</div>
+						</div>
+						<!--<div class="right-pack">
+							<span class="mui-icon mui-icon-arrowright"></span>
+						</div>-->
+					</div>
+
+					<!-- 所得票数信息 -->
+					<div class="poll-pack">
+						<div class="desc-pack">
+							他/她的战绩
+						</div>
+						<ul class="mui-table-view mui-grid-view mui-grid-9">
+							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+								<span>编号</span>
+								<div id="id" class="mui-media-body">0</div></a></li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+								<span>投票数</span>
+								<div id="vote" class="mui-media-body">0票</div></a></li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+								<span>收到礼物</span>
+								<div id="gift" class="mui-media-body">0个</div></a></li>
+						</ul>
+					</div>
+
+					<div class="content-pack">
+						<div class="desc-pack">
+							我拥有的礼物（礼物会转换为票数）
+						</div>
+						<ul id="giftList" class="mui-table-view mui-grid-view mui-grid-9">
+							<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+								<img src="i/diamond.png" />
+								<div class="mui-media-body">钻石*30</div></a></li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+								<img src="i/pen.png" />
+								<div class="mui-media-body">毛笔*5</div></a></li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+								<img src="i/cup.png" />
+								<div class="mui-media-body">奖杯*1</div></a></li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+								<img src="i/crown.png" />
+								<div class="mui-media-body">皇冠*10</div></a></li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+								<img src="i/medal.png" />
+								<div class="mui-media-body">金牌*2</div></a></li>-->
+						</ul>
+					</div>
+					<div class="number-pack">
+						<div class="label-pack">选择礼物个数</div>
+						<div class="value-pack">
+							<select id="giftNumSelect" class="mui-btn mui-btn-block">
+								<option selected value="1">1个</option>
+								<option value="2">2个</option>
+								<option value="3">3个</option>
+								<option value="4">4个</option>
+								<option value="5">5个</option>
+								<option value="6">6个</option>
+								<option value="7">7个</option>
+								<option value="8">8个</option>
+								<option value="9">9个</option>
+								<option value="10">10个</option>
+								<option value="20">20个</option>
+								<option value="50">50个</option>
+								<option value="100">100个</option>
+								<option value="200">200个</option>
+								<option value="500">500个</option>
+								<option value="1000">1000个</option>
+							</select>
+						</div>
+					</div>
+					<div class="btn-pack">
+						<div class="mall-pack">
+							<button id="buy" type="button" data-loading-text = "加载中"  class="mui-btn mui-btn-block">购买礼物</button>
+						</div>
+						<div class="submit-pack">
+							<button id="submit" type="button" data-loading-text = "加载中"  class="mui-btn mui-btn-block">赠送他 / 她</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<!-- 通用类库 -->
+		<script src="js/lib/zepto.js"></script>
+		<script src="js/lib/zepto.touch.js"></script>
+		<script src="js/lib/fastclick.js"></script>
+		<script src="js/lib/mui/js/mui.min.js"></script>
+
+		<script>
+			$(function () {
+				var code = '';
+				var name = '';
+				var selectGiftId = '';
+				var selectGiftNum = '1';
+				// 首先取消js在客户端的点击事件300毫秒延迟
+				FastClick.attach(document.body);
+
+				// 初始化加载更多
+				mui.init({
+					swipeBack: true //启用右滑关闭功能
+				});
+
+				getAuthorScore()
+				getUserGift()
+
+				// 获取作者战绩
+				function getAuthorScore () {
+					$.ajax({
+						url: "http://47.92.216.253/tools/wechatpn.ashx?action=GetAuthorScore&author_code="+getQueryString('code')+"&we_chat_user_id="+window.sessionStorage.getItem('qh_user_id')+"&open_id="+window.sessionStorage.getItem('qh_open_id'),
+						type: "get",
+						dataType: "json",
+						success: function(result) {
+							$('#portrait').attr('src', result.data.author_head_img)
+							$('#name').html(result.data.author_name)
+							$('#introduce').html(result.data.works_introduce)
+							$('#id').html(result.data.author_code)
+							$('#vote').html(result.data.vote_num+'票')
+							$('#gift').html(result.data.gife_num+'个')
+							name = result.data.author_name
+						},
+						error: function() {
+							mui.alert('获取作者战绩出错！', '启后书画院', function() {
+								console.info('你刚关闭了警告框');
+							});
+						}
+					});
+				}
+
+				// 获取用户所拥有的礼物
+				function getUserGift () {
+					$.ajax({
+						url: "http://47.92.216.253/tools/wechatpn.ashx?action=GetMyGift&we_chat_user_id="+window.sessionStorage.getItem('qh_user_id')+"&open_id="+window.sessionStorage.getItem('qh_open_id'),
+						type: "get",
+						dataType: "json",
+						success: function(result) {
+							if (result.state === 1) {
+								if (result.data == null || result.data.belong_gife == null || result.data.belong_gife.length == 0) {
+									$('.content-pack').append('<div style="margin: 35px 20px;font-size: 14px;color:#999;">您的账户暂时没有礼物，您也可以通过<span style="color:#FEAE1B">购买礼物按钮</span>进行赠送支持作者！</div>')
+								} else {
+									var html = '';
+									for (var i=0; i<result.data.belong_gife.length; i++) {
+										html += '<li id="'+result.data.belong_gife[i].gift_id+'" vote="'+result.data.belong_gife[i].vote_num+'" cost="'+result.data.belong_gife[i].cost_num+'"  class="gift-cell-pack mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">';
+										html += '	<a href="#">';
+										html += '		<img src="http://47.92.216.253/'+result.data.belong_gife[i].gift_img+'" />';
+										html += '		<div class="mui-media-body">'+result.data.belong_gife[i].gift_name+'*'+result.data.belong_gife[i].gift_num+'</div>';
+										html += '		<div style="color: #FF4351!important;" class="mui-media-body">单价'+result.data.belong_gife[i].cost_num+'元</div>';
+										html += '	</a>';
+										html += '</li>';
+									}
+									$('#giftList').append(html)
+								}
+							} else {
+								mui.alert(result.msg, '启后书画院', function() {
+									console.info('你刚关闭了警告框');
+								});
+							}
+						},
+						error: function() {
+							mui.alert('获取我所拥有的礼物出错！', '启后书画院', function() {
+								console.info('你刚关闭了警告框');
+							});
+						}
+					});
+				}
+
+
+				$('.gift-cell-pack').live('click', function(){
+					$('.gift-cell-pack').css('border', '0px solid #f45d4a!important')
+					$(this).css('border', '1px solid #ffc900!important')
+					selectGiftId = $(this).attr("id")
+					var vote = $(this).attr("vote")
+					var cost = $(this).attr("cost")
+					$('.give-page .all-pack .number-pack .label-pack').html('单价'+cost+'元，可抵'+vote+'票')
+					$('.give-page .all-pack .number-pack .label-pack').css('color', '#333')
+				})
+
+//				$('.info-pack').tap(function(){
+//					window.location.href = 'details.html?from=give&code='+getQueryString('code');
+//				})
+
+				$('#buy').tap(function(){
+					window.location.href = 'buy.html?code='+getQueryString('code')+'&name='+encodeURI(encodeURI(name))+'&from='+getQueryString('from');
+				})
+
+				$('#submit').on('click', function(){
+					mui($('#submit')[0]).button('loading');
+					if (selectGiftId == '') {
+						mui.alert('请先选中您赠送的礼物！', '启后书画院', function() {
+							console.info('你刚关闭了警告框');
+							mui($('#submit')[0]).button('reset');
+						});
+					} else {
+						selectGiftNum = $('#giftNumSelect').val()
+						$.ajax({
+							url: "http://47.92.216.253/tools/wechatpn.ashx?action=UserSendGiftOperate",
+							type: "post",
+							dataType: "json",
+							data: {
+								we_chat_user_id: window.sessionStorage.getItem('qh_user_id'),
+								open_id: window.sessionStorage.getItem('qh_open_id'),
+								author_code: getQueryString('code'),
+								gift_id: selectGiftId,
+								gift_num: selectGiftNum
+							},
+							success: function(result) {
+								mui($('#submit')[0]).button('reset');
+								if (result.state === 1) {
+									mui.alert('您赠送的礼物'+name+'已收到，小启代作者向您说一声感谢，谢谢您的支持！', '启后书画院', function() {
+										window.location.href = 'details.html?from='+getQueryString('from')+'&author_code='+getQueryString('code');
+									});
+								} else {
+									mui.alert(result.msg, '启后书画院', function() {
+										console.info('你刚关闭了警告框');
+									});
+								}
+							},
+							error: function() {
+								mui($('#submit')[0]).button('reset');
+								mui.alert('赞赏出错！', '启后书画院', function() {
+									console.info('你刚关闭了警告框');
+								});
+							}
+						});
+					}
+				})
+
+				//目标页（redirect_uri跳转页） 获取code，code来自页面返回
+				function getQueryString(name) {
+					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+					var r = window.location.search.substr(1).match(reg);
+					if (r != null) return unescape(r[2]);
+					return null;
+				}
+			});
+		</script>
+	</body>
+</html>
