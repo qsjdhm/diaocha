@@ -230,7 +230,7 @@
                         <img src="./i/scdy/编组3@2x.png" />
                     </div>
                     <div class="value-pack">
-                        <input type="text" placeholder="请输入您的企业名称" />
+                        <input id="company" type="text" placeholder="请输入您的企业名称" />
                     </div>
                 </div>
                 <div class="form-item-pack lxr-pack">
@@ -239,14 +239,14 @@
                     </div>
                     <div class="value-pack">
                         <div class="input-pack">
-                            <input type="text" placeholder="请输入联系人" />
+                            <input id="contact" type="text" placeholder="请输入联系人" />
                         </div>
                         <div class="checkbox-pack">
-                            <div style="margin-right: 8px;" class="checked checkbox-item-pack">
+                            <div style="margin-right: 8px;" value="0" class="checked male checkbox-item-pack">
                                 <span>先生</span>
                                 <img src="./i/scdy/编组2@2x.png" />
                             </div>
-                            <div class="checkbox-item-pack">
+                            <div value="1" class="checkbox-item-pack male">
                                 <span>女士</span>
                                 <img src="./i/scdy/编组2@2x.png" />
                             </div>
@@ -258,7 +258,7 @@
                         <img src="./i/scdy/编组4备份@2x.png" />
                     </div>
                     <div class="value-pack">
-                        <input type="tel" placeholder="请输入联系电话" />
+                        <input id="phone" type="tel" placeholder="请输入联系电话" />
                     </div>
                 </div>
             </div>
@@ -268,21 +268,21 @@
                 </div>
                 <div class="content-pack">
                     <div class="checkbox-pack">
-                        <div style="margin-right: 17px;" class="checked checkbox-item-pack">
+                        <div value="0" style="margin-right: 17px;" class="checked checkbox-item-pack type">
                             <span>产品调研</span>
                             <img src="./i/scdy/编组2@2x.png" />
                         </div>
-                        <div class="checkbox-item-pack">
+                        <div value="1" class="checkbox-item-pack type">
                             <span>市场调研</span>
                             <img src="./i/scdy/编组2@2x.png" />
                         </div>
                     </div>
                     <div class="checkbox-pack">
-                        <div style="margin-right: 17px;" class=" checkbox-item-pack">
+                        <div value="2" style="margin-right: 17px;" class=" checkbox-item-pack type">
                             <span>政策调研</span>
                             <img src="./i/scdy/编组2@2x.png" />
                         </div>
-                        <div class="checked checkbox-item-pack">
+                        <div value="3" class="checked checkbox-item-pack type">
                             <span>厂家调研</span>
                             <img src="./i/scdy/编组2@2x.png" />
                         </div>
@@ -290,7 +290,7 @@
                 </div>
             </div>
             <div class="button-pack">
-                <div class="button">
+                <div class="button submit">
                     <span>获取调研意向单</span>
                     <img src="./i/scdy/导航栏图标返回@2x.png" />
                 </div>
@@ -314,49 +314,104 @@
 					swipeBack: true //启用右滑关闭功能
 				});
 
-				// getGiftList()
-
-				// 获取礼物列表
-				function getGiftList () {
-					$.ajax({
-						url: "http://47.92.216.253/tools/wechatpn.ashx?action=GetGiftShopInfo",
-						type: "get",
-						dataType: "json",
-						success: function(result) {
-							if (result.state === 1) {
-								if (result.data !== null) {
-									var html = '';
-									for (var i=0; i<result.data.gift_list.length; i++) {
-										html += '<li id="'+result.data.gift_list[i].gift_id+'" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">';
-										html += '	<img src="http://47.92.216.253/'+result.data.gift_list[i].gift_img+'" />';
-										html += '	<div class="mui-media-body">'+result.data.gift_list[i].gift_name+'('+result.data.gift_list[i].integral_num+'积分)</div></a>';
-										html += '</li>';
-									}
-									$("#giftList").append(html)
+				$('.male').live('click', function(){
+                    $('.male').removeClass('checked')
+                    $(this).addClass('checked')
+					// window.location.href = 'personal.html'
+                })
+                
+                $('.type').live('click', function(){
+                    if ($(this).hasClass('checked')) {
+                        $(this).removeClass('checked')
+                    } else {
+                        $(this).addClass('checked')
+                    }
+                })
+                
+                $('.submit').live('click', function(){
+                    var company = '';
+                    var contact = '';
+                    var male = 0;
+                    var phone = '';
+                    var type = [];
+                    if ($.trim($('#company').val()) == '') {
+						mui.alert('请输入您的企业名称', '平台服务', function () {});
+						return false
+                    } else {
+                        company = $.trim($('#company').val())
+                    }
+                    if ($.trim($('#contact').val()) == '') {
+						mui.alert('请输入联系人', '平台服务', function () {});
+						return false
+                    } else {
+                        contact = $.trim($('#contact').val())
+                    }
+                    male = $('.mid-pack .checked').attr('value')
+                    if ($.trim($('#phone').val()) == '') {
+						mui.alert('请输入手机号', '平台服务', function () {});
+						return false
+					} else {
+                        if (!isPoneAvailable($.trim($('#phone').val()))) {
+                            mui.alert('请输入正确格式的手机号', '平台服务', function () {});
+                            return false
+                        } else {
+                            phone = $.trim($('#phone').val())
+                        }
+                    }
+                    for (var i = 0, len = $('.bottom-pack .checked').length; i < len; i++) {
+                        type.push($($('.bottom-pack .checked')[i]).attr('value'))
+                    }
+                    if (type.length == 0) {
+                        mui.alert('请至少选中一项调研种类', '平台服务', function () {});
+                        return false
+                    }
+                    $.ajax({
+							url: "http://47.92.216.253/tools/wechatpn.ashx?action=IntegralGiftOperate",
+							type: "post",
+							dataType: "json",
+							data: {
+								company: stripscript(company),
+								contact: stripscript(contact),
+								male: selectGiftId,
+                                phone: stripscript(phone),
+                                type: selectGiftNum
+							},
+							success: function(result) {
+								if (result.state === 1) {
+									mui.alert(result.msg, '平台服务', function() {
+										console.info('你刚关闭了警告框');
+									});
+								} else {
+									mui.alert(result.msg, '平台服务', function() {
+										console.info('你刚关闭了警告框');
+									});
 								}
-							} else {
-								mui.alert(result.msg, '启后书画院', function() {
+							},
+							error: function() {
+								mui.alert('获取调研意向单出错！', '平台服务', function() {
 									console.info('你刚关闭了警告框');
 								});
 							}
-						},
-						error: function() {
-							mui.alert('获取可兑换礼物出错！', '启后书画院', function() {
-								console.info('你刚关闭了警告框');
-							});
-						}
-					});
+						});
+                })
+
+
+                function stripscript(s) {
+					var pattern = new RegExp("[%--`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]")        //格式 RegExp("[在中间定义特殊过滤字符]")
+					var rs = "";
+					for (var i = 0; i < s.length; i++) {
+						rs = rs+s.substr(i, 1).replace(pattern, '');
+					}
+					return rs;
 				}
-
-				$('.mui-table-view-cell').live('click', function(){
-					$('.mui-table-view-cell').css('border', '0px solid #f45d4a!important')
-					$(this).css('border', '1px solid #ffc900!important')
-					selectGiftId = $(this).attr("id")
-				})
-
-				$('#back').live('tap', function(){
-					window.location.href = 'personal.html'
-				})
+				function isPoneAvailable (pone) {
+					var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+					if (!myreg.test(pone)) {
+						return false;
+					} else {
+						return true;
+					}
+				}
 			});
 		</script>
 	</body>
