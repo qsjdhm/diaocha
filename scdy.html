@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="">
+	<head>
+		<title>市场调研</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="js/lib/mui/css/mui.min.css" />
+		<link rel="stylesheet" href="css/app.css" />
+		<style>
+            .scdy-page {
+                height: 100%;
+                width: 100%;
+                overflow-y: auto;
+                overflow-x: hidden;
+                background-color: #FFFCFA;
+            }
+
+            .scdy-page .top-pack img {
+                width: 100%;
+            }
+
+            .scdy-page .mid-pack {
+                box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.04);
+                border-radius: 17px 17px 0px 0px;
+                margin: 0 18px 24px 18px;
+                padding: 27px 24px 25px 24px;
+                position: relative;
+                top: -60px;
+                z-index: 9;
+                background-color: #fff;
+                text-align: center;
+            }
+
+            .scdy-page .mid-pack .title-pack img {
+                width: 178px;
+                height: 50px;
+            }
+            .scdy-page .mid-pack .form-item-pack .label-pack {
+                position: relative;
+                left: -30px;
+                text-align: left;
+            }
+            .scdy-page .mid-pack .form-item-pack .label-pack img {
+                width: 85px;
+                height: 36px;
+            }
+            .scdy-page .mid-pack .form-item-pack .value-pack input {
+                background:rgba(246,247,249,1)!important;
+                border:0px solid rgba(242,243,245,1)!important;
+                height:38px;
+                font-size:14px;
+                font-weight:400;
+                color: #3D3D3D;
+                line-height:20px;
+                letter-spacing:1px;
+            }
+
+            .scdy-page .mid-pack .form-item-pack .value-pack input::-webkit-input-placeholder {  	/* WebKit browsers */
+                color:rgba(0,0,0,0.2);
+                letter-spacing:1px;
+            }
+
+            .scdy-page .mid-pack .lxr-pack .value-pack {
+                display: -webkit-flex;
+                display: flex;
+            }
+
+            .scdy-page .mid-pack .lxr-pack .value-pack .input-pack {
+                flex: auto;
+            }
+
+            .scdy-page .mid-pack .lxr-pack .value-pack .checkbox-pack {
+                width: 123px;
+                margin-left: 8px;
+                display: -webkit-flex;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .scdy-page .mid-pack .lxr-pack .value-pack .checkbox-pack .checkbox-item-pack {
+                width: 57px;
+                height: 38px;
+                line-height: 38px;
+                background:rgba(246,247,249,1);
+                border:1px solid rgba(242,243,245,1);
+                font-size:12px;
+                position: relative;
+                color: #999;
+            }
+
+            .scdy-page .mid-pack .lxr-pack .value-pack .checkbox-pack .checked {
+                border:1px solid rgba(83,92,98,1);
+                color: #747B80!important;
+            }
+
+            .scdy-page .mid-pack .lxr-pack .value-pack .checkbox-pack .checked img {
+                position: absolute;
+                bottom: -1px;
+                right: 0;
+                height: 18px;
+                width: 18px;
+                display: block!important;
+            }
+
+            .scdy-page .mid-pack .lxr-pack .value-pack .checkbox-pack .checkbox-item-pack img {
+                position: absolute;
+                bottom: -1px;
+                right: 0;
+                height: 18px;
+                width: 18px;
+                display: none;
+            }
+
+            .scdy-page .bottom-pack {
+                margin: 0 30px 9px 18px;
+                text-align: center;
+                position: relative;
+                top: -60px;
+            }
+            
+            .scdy-page .bottom-pack .label-pack {
+                position: relative;
+                text-align: left;
+                height: 41px;
+            }
+
+            .scdy-page .bottom-pack .label-pack img {
+                width: 143px;
+                height: 41px;
+            }
+
+            .scdy-page .bottom-pack .content-pack {
+                padding: 24px 28px 0 28px;
+                box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.04);
+                background-color: #fff;
+            }
+
+            .scdy-page .bottom-pack .checkbox-pack {
+                width: 100%;
+                display: -webkit-flex;
+                display: flex;
+                justify-content: space-between;
+                color: #9D9D9D;
+            }
+
+            .scdy-page .bottom-pack .checkbox-pack .checkbox-item-pack {
+                width: 50%;
+                height: 38px;
+                line-height: 38px;
+                margin-bottom: 15px;
+                background:rgba(246,247,249,1);
+                border:1px solid rgba(221,224,232,1);
+                font-size:12px;
+                position: relative;
+            }
+
+            .scdy-page .bottom-pack .checkbox-pack .checked {
+                border:1px solid rgba(83,92,98,1);
+                color: #3D3D3D;
+            }
+
+            .scdy-page .bottom-pack .checkbox-pack .checked img {
+                position: absolute;
+                bottom: -1px;
+                right: 0;
+                height: 18px;
+                width: 18px;
+                display: block!important;
+            }
+
+            .scdy-page .bottom-pack .checkbox-pack .checkbox-item-pack img {
+                position: absolute;
+                bottom: -1px;
+                right: 0;
+                height: 18px;
+                width: 18px;
+                display: none;
+            }
+
+            .scdy-page .button-pack {
+                height:50px;
+                background:rgba(230,20,23,1);
+                border-radius:25px;
+                margin: 0 30px 9px 18px;
+                position: relative;
+                top: -30px;
+            }
+
+            .scdy-page .button-pack .button {
+                height: 100%;
+                width: 100%;
+                display: -webkit-flex;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size:14px;
+                font-weight:bold;
+                color:rgba(255,255,255,1);
+            }
+
+            .scdy-page .button-pack .button span {
+                letter-spacing:1px;
+            }
+
+            .scdy-page .button-pack .button img {
+                width: 14px;
+                height: 14px;
+                margin-left: 4px;
+            }
+
+
+		</style>
+	</head>
+	<body>
+		<div id="scdy_page" class="scdy-page">
+            <div class="top-pack">
+                <img src="./i/scdy/主图@2x.png" />
+            </div>
+            <div class="mid-pack">
+                <div class="title-pack">
+                    <img src="./i/scdy/编组@2x.png" />
+                </div>
+                <div class="form-item-pack">
+                    <div class="label-pack">
+                        <img src="./i/scdy/编组3@2x.png" />
+                    </div>
+                    <div class="value-pack">
+                        <input type="text" placeholder="请输入您的企业名称" />
+                    </div>
+                </div>
+                <div class="form-item-pack lxr-pack">
+                    <div class="label-pack">
+                        <img src="./i/scdy/编组4@2x.png" />
+                    </div>
+                    <div class="value-pack">
+                        <div class="input-pack">
+                            <input type="text" placeholder="请输入联系人" />
+                        </div>
+                        <div class="checkbox-pack">
+                            <div style="margin-right: 8px;" class="checked checkbox-item-pack">
+                                <span>先生</span>
+                                <img src="./i/scdy/编组2@2x.png" />
+                            </div>
+                            <div class="checkbox-item-pack">
+                                <span>女士</span>
+                                <img src="./i/scdy/编组2@2x.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item-pack">
+                    <div class="label-pack">
+                        <img src="./i/scdy/编组4备份@2x.png" />
+                    </div>
+                    <div class="value-pack">
+                        <input type="tel" placeholder="请输入联系电话" />
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-pack">
+                <div class="label-pack">
+                    <img src="./i/scdy/编组3@2x(1).png" />
+                </div>
+                <div class="content-pack">
+                    <div class="checkbox-pack">
+                        <div style="margin-right: 17px;" class="checked checkbox-item-pack">
+                            <span>产品调研</span>
+                            <img src="./i/scdy/编组2@2x.png" />
+                        </div>
+                        <div class="checkbox-item-pack">
+                            <span>市场调研</span>
+                            <img src="./i/scdy/编组2@2x.png" />
+                        </div>
+                    </div>
+                    <div class="checkbox-pack">
+                        <div style="margin-right: 17px;" class=" checkbox-item-pack">
+                            <span>政策调研</span>
+                            <img src="./i/scdy/编组2@2x.png" />
+                        </div>
+                        <div class="checked checkbox-item-pack">
+                            <span>厂家调研</span>
+                            <img src="./i/scdy/编组2@2x.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-pack">
+                <div class="button">
+                    <span>获取调研意向单</span>
+                    <img src="./i/scdy/导航栏图标返回@2x.png" />
+                </div>
+            </div>
+		</div>
+
+
+		<!-- 通用类库 -->
+		<script src="js/lib/zepto.js"></script>
+		<script src="js/lib/zepto.touch.js"></script>
+		<script src="js/lib/fastclick.js"></script>
+		<script src="js/lib/mui/js/mui.min.js"></script>
+
+		<script>
+			$(function () {
+				// 首先取消js在客户端的点击事件300毫秒延迟
+				FastClick.attach(document.body);
+
+				// 初始化加载更多
+				mui.init({
+					swipeBack: true //启用右滑关闭功能
+				});
+
+				// getGiftList()
+
+				// 获取礼物列表
+				function getGiftList () {
+					$.ajax({
+						url: "http://47.92.216.253/tools/wechatpn.ashx?action=GetGiftShopInfo",
+						type: "get",
+						dataType: "json",
+						success: function(result) {
+							if (result.state === 1) {
+								if (result.data !== null) {
+									var html = '';
+									for (var i=0; i<result.data.gift_list.length; i++) {
+										html += '<li id="'+result.data.gift_list[i].gift_id+'" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">';
+										html += '	<img src="http://47.92.216.253/'+result.data.gift_list[i].gift_img+'" />';
+										html += '	<div class="mui-media-body">'+result.data.gift_list[i].gift_name+'('+result.data.gift_list[i].integral_num+'积分)</div></a>';
+										html += '</li>';
+									}
+									$("#giftList").append(html)
+								}
+							} else {
+								mui.alert(result.msg, '启后书画院', function() {
+									console.info('你刚关闭了警告框');
+								});
+							}
+						},
+						error: function() {
+							mui.alert('获取可兑换礼物出错！', '启后书画院', function() {
+								console.info('你刚关闭了警告框');
+							});
+						}
+					});
+				}
+
+				$('.mui-table-view-cell').live('click', function(){
+					$('.mui-table-view-cell').css('border', '0px solid #f45d4a!important')
+					$(this).css('border', '1px solid #ffc900!important')
+					selectGiftId = $(this).attr("id")
+				})
+
+				$('#back').live('tap', function(){
+					window.location.href = 'personal.html'
+				})
+			});
+		</script>
+	</body>
+</html>
