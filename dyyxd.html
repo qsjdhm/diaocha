@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="">
+	<head>
+		<title>调研意向单</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="js/lib/mui/css/mui.min.css" />
+		<link rel="stylesheet" href="css/app.css" />
+		<style>
+            .dyyxd-page {
+                height: 100%;
+                width: 100%;
+                overflow-y: auto;
+                overflow-x: hidden;
+                background-color: #FFFCFA;
+            }
+
+            .dyyxd-page .top-pack img {
+                width: 100%;
+            }
+
+            .dyyxd-page .mid-pack {
+                box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.04);
+                border-radius: 17px 17px 0px 0px;
+                margin: 0 18px 24px 18px;
+                padding: 27px 24px 25px 24px;
+                position: relative;
+                top: -60px;
+                z-index: 9;
+                background-color: #fff;
+                text-align: center;
+            }
+
+            .dyyxd-page .mid-pack .title-pack img {
+                width: 178px;
+                height: 50px;
+            }
+            
+
+            .dyyxd-page .button-pack {
+                height:50px;
+                background:rgba(230,20,23,1);
+                border-radius:25px;
+                margin: 0 30px 9px 18px;
+                position: relative;
+                top: -30px;
+            }
+
+            .dyyxd-page .button-pack .button {
+                height: 100%;
+                width: 100%;
+                display: -webkit-flex;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size:14px;
+                font-weight:bold;
+                color:rgba(255,255,255,1);
+            }
+
+            .dyyxd-page .button-pack .button span {
+                letter-spacing:1px;
+            }
+
+            .dyyxd-page .button-pack .button img {
+                width: 14px;
+                height: 14px;
+                margin-left: 4px;
+            }
+
+
+		</style>
+	</head>
+	<body>
+		<div id="dyyxd_page" class="dyyxd-page">
+            <div class="top-pack">
+                <img src="./i/dyyxd/主图@2x.png" />
+            </div>
+            <div class="mid-pack">
+                <div class="title-pack">
+                    <img src="./i/dyyxd/编组@2x.png" />
+                </div>
+                
+            </div>
+            <div class="button-pack">
+                <div class="button submit">
+                    <span>获取调研意向单</span>
+                    <img src="./i/dyyxd/导航栏返回.png" />
+                </div>
+            </div>
+		</div>
+
+
+		<!-- 通用类库 -->
+		<script src="js/lib/zepto.js"></script>
+		<script src="js/lib/zepto.touch.js"></script>
+		<script src="js/lib/fastclick.js"></script>
+		<script src="js/lib/mui/js/mui.min.js"></script>
+
+		<script>
+			$(function () {
+				// 首先取消js在客户端的点击事件300毫秒延迟
+				FastClick.attach(document.body);
+
+				// 初始化加载更多
+				mui.init({
+					swipeBack: true //启用右滑关闭功能
+				});
+
+				$('.male').live('click', function(){
+                    $('.male').removeClass('checked')
+                    $(this).addClass('checked')
+					// window.location.href = 'personal.html'
+                })
+                
+                $('.type').live('click', function(){
+                    $('.type').removeClass('checked')
+                    $(this).addClass('checked')
+                })
+                
+                $('.submit').live('click', function(){
+                    var company = '';
+                    var contact = '';
+                    var male = 0;
+                    var phone = '';
+                    var type = '';
+                    if ($.trim($('#company').val()) == '') {
+						mui.alert('请输入您的企业名称', '平台服务', function () {});
+						return false
+                    } else {
+                        company = $.trim($('#company').val())
+                    }
+                    if ($.trim($('#contact').val()) == '') {
+						mui.alert('请输入联系人', '平台服务', function () {});
+						return false
+                    } else {
+                        contact = $.trim($('#contact').val())
+                    }
+                    male = $('.mid-pack .checked').attr('value')
+                    if ($.trim($('#phone').val()) == '') {
+						mui.alert('请输入手机号', '平台服务', function () {});
+						return false
+					} else {
+                        if (!isPoneAvailable($.trim($('#phone').val()))) {
+                            mui.alert('请输入正确格式的手机号', '平台服务', function () {});
+                            return false
+                        } else {
+                            phone = $.trim($('#phone').val())
+                        }
+                    }
+                    type = $('.bottom-pack .checked').attr('value')
+                    $.ajax({
+							url: "http://47.92.216.253/tools/wechatpn.ashx?action=IntegralGiftOperate",
+							type: "post",
+							dataType: "json",
+							data: {
+								company: stripscript(company),
+								contact: stripscript(contact),
+								male: male,
+                                phone: stripscript(phone),
+                                type: type
+							},
+							success: function(result) {
+								if (result.state === 1) {
+									mui.alert(result.msg, '平台服务', function() {
+										console.info('你刚关闭了警告框');
+									});
+								} else {
+									mui.alert(result.msg, '平台服务', function() {
+										console.info('你刚关闭了警告框');
+									});
+								}
+							},
+							error: function() {
+								mui.alert('获取调研意向单出错！', '平台服务', function() {
+									console.info('你刚关闭了警告框');
+								});
+							}
+						});
+                })
+
+
+                function stripscript(s) {
+					var pattern = new RegExp("[%--`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]")        //格式 RegExp("[在中间定义特殊过滤字符]")
+					var rs = "";
+					for (var i = 0; i < s.length; i++) {
+						rs = rs+s.substr(i, 1).replace(pattern, '');
+					}
+					return rs;
+				}
+				function isPoneAvailable (pone) {
+					var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+					if (!myreg.test(pone)) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
