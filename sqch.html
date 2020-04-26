@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="">
 	<head>
-		<title>市场调研</title>
+		<title>申请参会</title>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="description" content="" />
@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="js/lib/mui/css/mui.min.css" />
 		<link rel="stylesheet" href="css/app.css" />
 		<style>
-            .scdy-page {
+            .sqch-page {
                 height: 100%;
                 width: 100%;
                 overflow-y: auto;
@@ -20,36 +20,101 @@
                 background-color: #FFFCFA;
             }
 
-            .scdy-page .top-pack img {
+            
+
+            .sqch-page .top-pack {
+                height: auto;
+                width: 100%;
+                position: relative;
+            }
+            .sqch-page .top-pack .bg-pack {
+                /* position: absolute; */
                 width: 100%;
             }
+            .sqch-page .top-pack .bg-pack img {
+                width: 100%;
+            }
+            .sqch-page .top-pack .hymc-pack {
+                margin-top: -374px;
+                padding-top: 66px;
+                padding-left: 79px;
+                padding-right: 79px;
+                text-align: center;
+                font-size:42px;
+                font-weight:800;
+                color:rgba(255,255,255,1);
+                line-height:48px;
+                letter-spacing:1px;
+                z-index: 9;
+                position: relative;
+                margin-bottom: 37px; 
+            }
 
-            .scdy-page .mid-pack {
+            
+            .sqch-page .top-pack .hyjj-pack {
+                z-index: 9;
+                position: relative;
+                background:rgba(255,255,255,1);
+                box-shadow:0px 0px 12px 0px rgba(0,0,0,0.04);
+                padding: 22px 24px 18px 24px;
+                margin: 0 16px 12px 16px;
+                margin-top: 0;
+            }
+
+            .sqch-page .top-pack .hyjj-pack .title-pack {
+                text-align: center;
+                margin-bottom: 22px;
+            }
+            .sqch-page .top-pack .hyjj-pack .title-pack .title {
+                font-size:18px;
+                font-weight:800;
+                color:rgba(43,39,43,1);
+                line-height:27px;
+                margin-bottom: 5px;
+            }
+
+            .sqch-page .top-pack .hyjj-pack .title-pack .whippletree {
+                width:30px;
+                height:5px;
+                background:rgba(243,76,69,1);
+                display: block;
+                text-align: center;
+                margin: 0 auto;
+            }
+
+            .sqch-page .top-pack .hyjj-pack .content-pack {
+                margin-bottom: 22px;
+                font-size:14px;
+                font-weight:400;
+                color:rgba(0,0,0,0.4);
+                line-height:20px;
+                letter-spacing:1px;
+            }
+
+            .sqch-page .mid-pack {
                 box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.04);
-                border-radius: 17px 17px 0px 0px;
-                margin: 0 18px 24px 18px;
+                margin: 0 18px 15px 18px;
                 padding: 27px 24px 25px 24px;
                 position: relative;
-                top: -60px;
                 z-index: 9;
                 background-color: #fff;
                 text-align: center;
             }
 
-            .scdy-page .mid-pack .title-pack img {
+            .sqch-page .mid-pack .title-pack img {
                 width: 178px;
                 height: 50px;
             }
-            .scdy-page .mid-pack .form-item-pack .label-pack {
+            .sqch-page .mid-pack .form-item-pack .label-pack {
                 position: relative;
                 left: -30px;
                 text-align: left;
             }
-            .scdy-page .mid-pack .form-item-pack .label-pack img {
+            .sqch-page .mid-pack .form-item-pack .label-pack img {
                 width: 85px;
                 height: 36px;
             }
-            .scdy-page .mid-pack .form-item-pack .value-pack input {
+            .sqch-page .mid-pack .form-item-pack .value-pack input {
                 background:rgba(246,247,249,1)!important;
                 border:0px solid rgba(242,243,245,1)!important;
                 height:38px;
@@ -60,21 +125,21 @@
                 letter-spacing:1px;
             }
 
-            .scdy-page .mid-pack .form-item-pack .value-pack input::-webkit-input-placeholder {  	/* WebKit browsers */
+            .sqch-page .mid-pack .form-item-pack .value-pack input::-webkit-input-placeholder {  	/* WebKit browsers */
                 color:rgba(0,0,0,0.2);
                 letter-spacing:1px;
             }
 
-            .scdy-page .mid-pack .lxr-pack .value-pack {
+            .sqch-page .mid-pack .lxr-pack .value-pack {
                 display: -webkit-flex;
                 display: flex;
             }
 
-            .scdy-page .mid-pack .lxr-pack .value-pack .input-pack {
+            .sqch-page .mid-pack .lxr-pack .value-pack .input-pack {
                 flex: auto;
             }
 
-            .scdy-page .mid-pack .lxr-pack .value-pack .checkbox-pack {
+            .sqch-page .mid-pack .lxr-pack .value-pack .checkbox-pack {
                 width: 123px;
                 margin-left: 8px;
                 display: -webkit-flex;
@@ -82,7 +147,7 @@
                 justify-content: space-between;
             }
 
-            .scdy-page .mid-pack .lxr-pack .value-pack .checkbox-pack .checkbox-item-pack {
+            .sqch-page .mid-pack .lxr-pack .value-pack .checkbox-pack .checkbox-item-pack {
                 width: 57px;
                 height: 38px;
                 line-height: 38px;
@@ -93,12 +158,12 @@
                 color: #999;
             }
 
-            .scdy-page .mid-pack .lxr-pack .value-pack .checkbox-pack .checked {
+            .sqch-page .mid-pack .lxr-pack .value-pack .checkbox-pack .checked {
                 border:1px solid rgba(83,92,98,1);
                 color: #747B80!important;
             }
 
-            .scdy-page .mid-pack .lxr-pack .value-pack .checkbox-pack .checked img {
+            .sqch-page .mid-pack .lxr-pack .value-pack .checkbox-pack .checked img {
                 position: absolute;
                 bottom: -1px;
                 right: 0;
@@ -107,7 +172,7 @@
                 display: block!important;
             }
 
-            .scdy-page .mid-pack .lxr-pack .value-pack .checkbox-pack .checkbox-item-pack img {
+            .sqch-page .mid-pack .lxr-pack .value-pack .checkbox-pack .checkbox-item-pack img {
                 position: absolute;
                 bottom: -1px;
                 right: 0;
@@ -116,31 +181,31 @@
                 display: none;
             }
 
-            .scdy-page .bottom-pack {
+            .sqch-page .bottom-pack {
                 margin: 0 30px 9px 18px;
                 text-align: center;
                 position: relative;
                 top: -60px;
             }
             
-            .scdy-page .bottom-pack .label-pack {
+            .sqch-page .bottom-pack .label-pack {
                 position: relative;
                 text-align: left;
                 height: 41px;
             }
 
-            .scdy-page .bottom-pack .label-pack img {
+            .sqch-page .bottom-pack .label-pack img {
                 width: 143px;
                 height: 41px;
             }
 
-            .scdy-page .bottom-pack .content-pack {
+            .sqch-page .bottom-pack .content-pack {
                 padding: 24px 28px 0 28px;
                 box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.04);
                 background-color: #fff;
             }
 
-            .scdy-page .bottom-pack .checkbox-pack {
+            .sqch-page .bottom-pack .checkbox-pack {
                 width: 100%;
                 display: -webkit-flex;
                 display: flex;
@@ -148,7 +213,7 @@
                 color: #9D9D9D;
             }
 
-            .scdy-page .bottom-pack .checkbox-pack .checkbox-item-pack {
+            .sqch-page .bottom-pack .checkbox-pack .checkbox-item-pack {
                 width: 50%;
                 height: 38px;
                 line-height: 38px;
@@ -159,12 +224,12 @@
                 position: relative;
             }
 
-            .scdy-page .bottom-pack .checkbox-pack .checked {
+            .sqch-page .bottom-pack .checkbox-pack .checked {
                 border:1px solid rgba(83,92,98,1);
                 color: #3D3D3D;
             }
 
-            .scdy-page .bottom-pack .checkbox-pack .checked img {
+            .sqch-page .bottom-pack .checkbox-pack .checked img {
                 position: absolute;
                 bottom: -1px;
                 right: 0;
@@ -173,7 +238,7 @@
                 display: block!important;
             }
 
-            .scdy-page .bottom-pack .checkbox-pack .checkbox-item-pack img {
+            .sqch-page .bottom-pack .checkbox-pack .checkbox-item-pack img {
                 position: absolute;
                 bottom: -1px;
                 right: 0;
@@ -182,16 +247,15 @@
                 display: none;
             }
 
-            .scdy-page .button-pack {
+            .sqch-page .button-pack {
                 height:50px;
                 background:rgba(230,20,23,1);
                 border-radius:25px;
-                margin: 0 30px 9px 18px;
+                margin: 0 30px 22px 18px;
                 position: relative;
-                top: -30px;
             }
 
-            .scdy-page .button-pack .button {
+            .sqch-page .button-pack .button {
                 height: 100%;
                 width: 100%;
                 display: -webkit-flex;
@@ -203,31 +267,49 @@
                 color:rgba(255,255,255,1);
             }
 
-            .scdy-page .button-pack .button span {
+            .sqch-page .button-pack .button span {
                 letter-spacing:1px;
             }
 
-            .scdy-page .button-pack .button img {
+            .sqch-page .button-pack .button img {
                 width: 14px;
                 height: 14px;
                 margin-left: 4px;
             }
 
-
 		</style>
 	</head>
 	<body>
-		<div id="scdy_page" class="scdy-page">
+		<div id="scdy_page" class="sqch-page">
             <div class="top-pack">
-                <img src="./i/scdy/主图@2x.png" />
+                <div class="bg-pack">
+                    <img src="./i/sqch/背景@2x.png" />
+                </div>
+                <div class="hymc-pack">
+                    <span>会议主题会议主题</span>
+                </div>
+                <div class="hyjj-pack">
+                    <div class="title-pack">
+                        <div class="title">会议简介</div>
+                        <span class="whippletree"></span>
+                    </div>
+                    <div class="content-pack">
+                        <p>
+                            为了促进中国质谱事业发展，提升中国质谱在国际上的学术地位和影响力，由中国质谱学会（中国物理学会质谱分会）、中国化学会质谱分析专业委员会和中国仪器仪表学会分析仪器分会质谱仪器专业委员会联合主办的全国质谱学术大会定名为“2018年中国质谱学术大会”，定于2018年11月23-26日在广州市举办。 本次会议由中国广州分析测试中心、中山大学承办，广东省分析测试协会及广东省质谱学会协办。
+                        </p>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
             </div>
             <div class="mid-pack">
                 <div class="title-pack">
-                    <img src="./i/scdy/编组@2x.png" />
+                    <img src="./i/sqch/编组@2x.png" />
                 </div>
                 <div class="form-item-pack">
                     <div class="label-pack">
-                        <img src="./i/scdy/编组3@2x.png" />
+                        <img src="./i/sqch/编组3@2x.png" />
                     </div>
                     <div class="value-pack">
                         <input id="company" type="text" placeholder="请输入您的企业名称" />
@@ -235,7 +317,7 @@
                 </div>
                 <div class="form-item-pack lxr-pack">
                     <div class="label-pack">
-                        <img src="./i/scdy/编组4@2x.png" />
+                        <img src="./i/sqch/编组4@2x.png" />
                     </div>
                     <div class="value-pack">
                         <div class="input-pack">
@@ -255,44 +337,24 @@
                 </div>
                 <div class="form-item-pack">
                     <div class="label-pack">
-                        <img src="./i/scdy/编组4备份@2x.png" />
+                        <img src="./i/sqch/编组4备份@2x.png" />
                     </div>
                     <div class="value-pack">
                         <input id="phone" type="tel" placeholder="请输入联系电话" />
                     </div>
                 </div>
-            </div>
-            <div class="bottom-pack">
-                <div class="label-pack">
-                    <img src="./i/scdy/编组3@2x(1).png" />
-                </div>
-                <div class="content-pack">
-                    <div class="checkbox-pack">
-                        <div value="0" style="margin-right: 17px;" class="checked checkbox-item-pack type">
-                            <span>产品调研</span>
-                            <img src="./i/scdy/编组2@2x.png" />
-                        </div>
-                        <div value="1" class="checkbox-item-pack type">
-                            <span>市场调研</span>
-                            <img src="./i/scdy/编组2@2x.png" />
-                        </div>
+                <div class="form-item-pack">
+                    <div class="label-pack">
+                        <img src="./i/sqch/编组4备份@2x(1).png" />
                     </div>
-                    <div class="checkbox-pack">
-                        <div value="2" style="margin-right: 17px;" class=" checkbox-item-pack type">
-                            <span>政策调研</span>
-                            <img src="./i/scdy/编组2@2x.png" />
-                        </div>
-                        <div value="3" class="checkbox-item-pack type">
-                            <span>厂家调研</span>
-                            <img src="./i/scdy/编组2@2x.png" />
-                        </div>
+                    <div class="value-pack">
+                        <input id="number" type="number" placeholder="请输入参会人数" />
                     </div>
                 </div>
             </div>
             <div class="button-pack">
                 <div class="button submit">
-                    <span>获取调研意向单</span>
-                    <img src="./i/scdy/导航栏图标返回@2x.png" />
+                    <span>确认</span>
                 </div>
             </div>
 		</div>
@@ -320,17 +382,12 @@
 					// window.location.href = 'personal.html'
                 })
                 
-                $('.type').live('click', function(){
-                    $('.type').removeClass('checked')
-                    $(this).addClass('checked')
-                })
-                
                 $('.submit').live('click', function(){
                     var company = '';
                     var contact = '';
                     var male = 0;
                     var phone = '';
-                    var type = '';
+                    var number = 0;
                     if ($.trim($('#company').val()) == '') {
 						mui.alert('请输入您的企业名称', '平台服务', function () {});
 						return false
@@ -355,7 +412,12 @@
                             phone = $.trim($('#phone').val())
                         }
                     }
-                    type = $('.bottom-pack .checked').attr('value')
+                    if ($.trim($('#number').val()) == '') {
+						mui.alert('请输入参会人数', '平台服务', function () {});
+						return false
+                    } else {
+                        number = $.trim($('#number').val())
+                    }
                     $.ajax({
 							url: "http://47.92.216.253/tools/wechatpn.ashx?action=IntegralGiftOperate",
 							type: "post",
@@ -365,7 +427,7 @@
 								contact: stripscript(contact),
 								male: male,
                                 phone: stripscript(phone),
-                                type: type
+                                number: number
 							},
 							success: function(result) {
 								if (result.state === 1) {
