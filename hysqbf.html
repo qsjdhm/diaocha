@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="">
+	<head>
+		<title>会议申请备份</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="js/lib/mui/css/mui.min.css" />
+		<link rel="stylesheet" href="css/app.css" />
+		<style>
+            .hysqbf-page {
+                height: 100%;
+                width: 100%;
+                padding: 8px 10px 18px 10px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                background-color: #FD604D;
+            }
+
+            .hysqbf-page .top-pack {
+                height: auto;
+                width: 100%;
+                position: relative;
+                margin-bottom: 21px;
+            }
+
+            .hysqbf-page .top-pack img {
+                height: auto;
+                width: 100%;
+                border-radius: 3px;
+            }
+
+            .hysqbf-page .tip-pack {
+                margin-bottom: 24px;
+            }
+
+            .hysqbf-page .tip-pack img {
+                height: auto;
+                width: 100%;
+            }
+
+
+            .hysqbf-page .info-pack {
+                box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.04);
+                padding: 27px 24px 25px 24px;
+                position: relative;
+                z-index: 9;
+                background-color: #fff;
+                text-align: center;
+            }
+
+            .hysqbf-page .info-pack .title-pack img {
+                width: 178px;
+                height: 50px;
+            }
+            .hysqbf-page .info-pack .form-item-pack .label-pack {
+                position: relative;
+                left: -30px;
+                text-align: left;
+            }
+            .hysqbf-page .info-pack .form-item-pack .label-pack img {
+                width: 85px;
+                height: 36px;
+            }
+            .hysqbf-page .info-pack .form-item-pack .value-pack input {
+                background:rgba(246,247,249,1)!important;
+                border:0px solid rgba(242,243,245,1)!important;
+                height:38px;
+                font-size:14px;
+                font-weight:400;
+                color: #3D3D3D;
+                line-height:20px;
+                letter-spacing:1px;
+            }
+
+            .hysqbf-page .info-pack .form-item-pack .value-pack input::-webkit-input-placeholder {  	/* WebKit browsers */
+                color:rgba(0,0,0,0.2);
+                letter-spacing:1px;
+            }
+
+            .hysqbf-page .info-pack .lxr-pack .value-pack {
+                display: -webkit-flex;
+                display: flex;
+            }
+
+            .hysqbf-page .info-pack .lxr-pack .value-pack .input-pack {
+                flex: auto;
+            }
+
+            .hysqbf-page .info-pack .lxr-pack .value-pack .checkbox-pack {
+                width: 123px;
+                margin-left: 8px;
+                display: -webkit-flex;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .hysqbf-page .info-pack .lxr-pack .value-pack .checkbox-pack .checkbox-item-pack {
+                width: 57px;
+                height: 38px;
+                line-height: 38px;
+                background:rgba(246,247,249,1);
+                border:1px solid rgba(242,243,245,1);
+                font-size:12px;
+                position: relative;
+                color: #999;
+            }
+
+            .hysqbf-page .info-pack .lxr-pack .value-pack .checkbox-pack .checked {
+                border:1px solid rgba(83,92,98,1);
+                color: #747B80!important;
+            }
+
+            .hysqbf-page .info-pack .lxr-pack .value-pack .checkbox-pack .checked img {
+                position: absolute;
+                bottom: -1px;
+                right: 0;
+                height: 18px;
+                width: 18px;
+                display: block!important;
+            }
+
+            .hysqbf-page .info-pack .lxr-pack .value-pack .checkbox-pack .checkbox-item-pack img {
+                position: absolute;
+                bottom: -1px;
+                right: 0;
+                height: 18px;
+                width: 18px;
+                display: none;
+            }
+
+
+
+
+            .hysqbf-page .hy-pack {
+                margin-bottom: 24px;
+            }
+
+            .hysqbf-page .hy-pack .line {
+                height: 6px;
+                width: 100%;
+                background-color: #E20F2E;
+            }
+
+            .hysqbf-page .hy-pack .list-pack {
+                background-color: #fff;
+                padding-bottom: 10px;
+                max-height: 320px;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+
+            .hysqbf-page .hy-pack .list-pack .gradual-pack {
+                width: 100%;
+                height: 15px;
+                background:-webkit-gradient(linear, 0% 80%, 95% 100%,from(#f06969), to(#fff));
+                background: -webkit-gradient(linear, 0% 80%, 95% 100%, from(#f06969), to(#fff));
+                background: -webkit-linear-gradient(top, #f06969, #fff);
+                background: -o-linear-gradient(top, #f06969, #fff);
+            }
+
+            .hysqbf-page .hy-pack .list-pack .item-pack {
+                margin: 17px 16px 0 16px;
+                border-bottom:1px dashed #ddd;
+                padding: 0 14px;
+            }
+
+            .hysqbf-page .hy-pack .list-pack .title {
+                font-size:16px;
+                font-weight:bold;
+                color:rgba(54,52,53,1);
+                line-height:16px;
+                margin-bottom: 12px;
+            }
+
+            .hysqbf-page .hy-pack .list-pack .content {
+                font-size:12px;
+                font-weight:400;
+                color:rgba(54,52,53,0.8);
+                line-height:18px;
+                margin-bottom: 16px;
+            }
+
+            .hysqbf-page .hy-pack .dot-pack {
+                text-align: right;
+                padding: 0 20px;
+                padding-bottom: 10px;
+                margin-top: 5px;
+            }
+
+            .hysqbf-page .hy-pack .dot-pack img {
+                width: 50px;
+                height: auto;
+            }
+
+            .hysqbf-page .button-pack {
+                height:44px;
+                margin: 40px 30px 22px 18px;
+                background:linear-gradient(163deg,rgba(249,172,0,1) 0%,rgba(250,149,0,1) 100%);
+                border-radius:24px;
+                position: relative;
+            }
+
+            .hysqbf-page .button-pack .button {
+                height: 100%;
+                width: 100%;
+                display: -webkit-flex;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size:14px;
+                font-weight:bold;
+                color:rgba(255,255,255,1);
+            }
+
+            .hysqbf-page .button-pack .button span {
+                letter-spacing:1px;
+            }
+
+            .hysqbf-page .button-pack .button img {
+                width: 14px;
+                height: 14px;
+                margin-left: 4px;
+            }
+
+
+		</style>
+	</head>
+	<body>
+		<div id="hysqbf_page" class="hysqbf-page">
+            <div class="top-pack">
+                <img src="./i/hysqbf/背景@2x.png" />
+            </div>
+            <div class="tip-pack">
+                <img src="./i/hysqbf/文本@2x.png" />
+            </div>
+            <div class="hy-pack">
+                <div class="line"></div>
+                <div class="list-pack">
+                    <div class="item-pack">
+                        <div class="title">会议类型</div>
+                        <div class="content">零售 实体经营</div>
+                    </div>
+                    <div class="item-pack">
+                        <div class="title">会议地点</div>
+                        <div class="content">北京市</div>
+                    </div>
+                    <div style="border-bottom:0px dashed #ddd!important;"  class="item-pack">
+                        <div class="title">会议开始时间</div>
+                        <div class="content">2020年4月3日</div>
+                    </div>
+                    <div class="dot-pack">
+                        <img src="./i/dyyxd/dian.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="info-pack">
+                <div class="form-item-pack lxr-pack">
+                    <div class="label-pack">
+                        <img src="./i/sqch/编组4@2x.png" />
+                    </div>
+                    <div class="value-pack">
+                        <div class="input-pack">
+                            <input id="contact" type="text" placeholder="请输入联系人" />
+                        </div>
+                        <div class="checkbox-pack">
+                            <div style="margin-right: 8px;" value="0" class="checked male checkbox-item-pack">
+                                <span>先生</span>
+                                <img src="./i/scdy/编组2@2x.png" />
+                            </div>
+                            <div value="1" class="checkbox-item-pack male">
+                                <span>女士</span>
+                                <img src="./i/scdy/编组2@2x.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item-pack">
+                    <div class="label-pack">
+                        <img src="./i/sqch/编组4备份@2x.png" />
+                    </div>
+                    <div class="value-pack">
+                        <input id="phone" type="tel" placeholder="请输入联系电话" />
+                    </div>
+                </div>
+            </div>
+            <div class="button-pack">
+                <div class="button submit">
+                    <span>提交</span>
+                </div>
+            </div>
+        </div>  
+
+
+		<!-- 通用类库 -->
+		<script src="js/lib/zepto.js"></script>
+		<script src="js/lib/zepto.touch.js"></script>
+		<script src="js/lib/fastclick.js"></script>
+		<script src="js/lib/mui/js/mui.min.js"></script>
+
+		<script>
+			$(function () {
+				// 首先取消js在客户端的点击事件300毫秒延迟
+				FastClick.attach(document.body);
+
+				// 初始化加载更多
+				mui.init({
+					swipeBack: true //启用右滑关闭功能
+				});
+
+                $('.male').live('click', function(){
+                    $('.male').removeClass('checked')
+                    $(this).addClass('checked')
+                })
+			});
+		</script>
+	</body>
+</html>
