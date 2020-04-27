@@ -27,8 +27,8 @@
             .dyyxd-page .mid-pack {
                 box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.04);
                 border-radius: 17px 17px 0px 0px;
-                margin: 0 18px 24px 18px;
-                padding: 27px 24px 25px 24px;
+                margin: 0 18px 0 18px;
+                padding: 27px 0 0 0;
                 position: relative;
                 top: -60px;
                 z-index: 9;
@@ -40,13 +40,81 @@
                 width: 178px;
                 height: 50px;
             }
+
+            .dyyxd-page .pro-list .item-pack {
+                padding: 16px 20px;
+                display: -webkit-flex;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                min-height: 76px;
+            }
+
+            .dyyxd-page .pro-list .item-pack .content {
+                flex: 1;
+                font-size:14px;
+                font-weight:500;
+                color:rgba(0,0,0,0.8);
+                line-height:22px;
+                text-align: left;
+            }
+
+            .dyyxd-page .pro-list .item-pack .schedule-item-white-check {
+                width: 15px;
+                height: 15px;
+                margin-left: 23px;
+            }
+            .dyyxd-page .pro-list .item-pack .schedule-item-white-check .check {
+                width: 15px;
+                height: 15px;
+                background-image: url('./i/dyyxd/check.png');
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+            .dyyxd-page .pro-list .item-pack .schedule-item-white-check .checked {
+                width: 15px;
+                height: 15px;
+                background-image: url('./i/dyyxd/checked.png');
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .stripes {
+                background-color: #fbf9f8;
+            }
+
+
+            .dyyxd-page .other-pack {
+                padding: 0 20px;
+                padding-bottom: 30px;
+            }
+
+            .dyyxd-page .other-pack .label {
+                height: 60px;
+                line-height: 60px;
+                font-size:14px;
+                font-weight:500;
+                color:rgba(0,0,0,0.8);
+                text-align: left;
+            }
+
+            .dyyxd-page .other-pack input::-webkit-input-placeholder {
+                color:rgba(0,0,0,0.2);
+                letter-spacing:1px;
+            }
+            .dyyxd-page .other-pack input {
+                border: 0px solid rgba(0,0,0,.2);
+                border-bottom: 1px solid rgba(216,216,216,0.4);
+                font-size: 12px;
+                padding: 0;
+            }
             
 
             .dyyxd-page .button-pack {
                 height:50px;
                 background:rgba(230,20,23,1);
                 border-radius:25px;
-                margin: 0 30px 9px 18px;
+                margin: 0 30px 0 18px;
                 position: relative;
                 top: -30px;
             }
@@ -73,6 +141,8 @@
                 margin-left: 4px;
             }
 
+            
+
 
 		</style>
 	</head>
@@ -85,14 +155,45 @@
                 <div class="title-pack">
                     <img src="./i/dyyxd/编组@2x.png" />
                 </div>
-                
-            </div>
-            <div class="button-pack">
-                <div class="button submit">
-                    <span>获取调研意向单</span>
-                    <img src="./i/dyyxd/导航栏返回.png" />
+                <div class="pro-list">
+                    <div class="item-pack">
+                        <div class="content">产品的进货价，零售价及市场维价情况分析</div>
+                        <div class="schedule-item-white-check">
+                            <div value="0" class="check"></div>
+                        </div>
+                    </div>
+                    <div class="item-pack stripes">
+                        <div class="content">产品的进货价情况分析</div>
+                        <div class="schedule-item-white-check">
+                            <div value="0" class="check"></div>
+                        </div>
+                    </div>
+                    <div class="item-pack">
+                        <div class="content">产品的进货价，零售价及市场维价情况分析</div>
+                        <div class="schedule-item-white-check">
+                            <div value="0" class="check"></div>
+                        </div>
+                    </div>
+                    <div class="item-pack stripes">
+                        <div class="content">产品的进货价情况分析</div>
+                        <div class="schedule-item-white-check">
+                            <div value="0" class="check"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="other-pack">
+                    <div class="label">其他</div>
+                        <input type="text" placeholder="请输入">
+                    </div>
+                </div>
+                <div class="button-pack">
+                    <div class="button submit">
+                        <span>获取调研意向单</span>
+                        <img src="./i/dyyxd/导航栏返回.png" />
+                    </div>
                 </div>
             </div>
+            
 		</div>
 
 
@@ -110,7 +211,22 @@
 				// 初始化加载更多
 				mui.init({
 					swipeBack: true //启用右滑关闭功能
-				});
+                });
+                
+                // 选框点击
+                $('.check').on('click', function () {
+                    var selectValue = $(this).attr('value');
+                    if (selectValue === '0') {
+                        $(this).attr('value', '1');
+                        $(this).removeClass('check');
+                        $(this).addClass('checked');
+                    }
+                    if (selectValue === '1') {
+                        $(this).attr('value', '0');
+                        $(this).removeClass('checked');
+                        $(this).addClass('check');
+                    }
+                })
 
 				$('.male').live('click', function(){
                     $('.male').removeClass('checked')
