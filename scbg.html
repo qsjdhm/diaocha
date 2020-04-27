@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="">
+	<head>
+		<title>生成报告</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="js/lib/mui/css/mui.min.css" />
+		<link rel="stylesheet" href="css/app.css" />
+		<style>
+            .scbg-page {
+                height: 100%;
+                width: 100%;
+                padding: 211px 21px 0 21px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                background-color: #ea3c34;
+                background:url('./i/scbg/背景@2x.png');
+                background-repeat: no-repeat;
+		        background-size: cover;
+            }
+
+            .scbg-page .top-pack {
+                height: auto;
+                width: 100%;
+                position: relative;
+            }
+
+            .scbg-page .top-pack .line {
+                width: 100%;
+                height: 12px;
+                border-radius: 12px;
+                background-color: #dc4c4c;
+            }
+
+            .scbg-page .top-pack .list-pack {
+                margin: -6px 6px; 
+                background-color: #fff;
+                padding-bottom: 30px;
+                max-height: 320px;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+
+            .scbg-page .top-pack .list-pack .gradual-pack {
+                width: 100%;
+                height: 15px;
+                background:-webkit-gradient(linear, 0% 80%, 95% 100%,from(#f06969), to(#fff));
+                background: -webkit-gradient(linear, 0% 80%, 95% 100%, from(#f06969), to(#fff));
+                background: -webkit-linear-gradient(top, #f06969, #fff);
+                background: -o-linear-gradient(top, #f06969, #fff);
+            }
+
+            .scbg-page .top-pack .list-pack .item-pack {
+                margin: 17px 16px 0 16px;
+                border-bottom:1px dashed #ddd;
+            }
+
+            .scbg-page .top-pack .list-pack .title {
+                font-size:16px;
+                font-weight:bold;
+                color:rgba(54,52,53,1);
+                line-height:16px;
+                margin-bottom: 12px;
+            }
+
+            .scbg-page .top-pack .list-pack .content {
+                font-size:12px;
+                font-weight:400;
+                color:rgba(54,52,53,0.8);
+                line-height:18px;
+                margin-bottom: 16px;
+            }
+
+            .scbg-page .button-pack {
+                height:44px;
+                margin: 40px 30px 22px 18px;
+                background:linear-gradient(163deg,rgba(249,172,0,1) 0%,rgba(250,149,0,1) 100%);
+                border-radius:24px;
+                position: relative;
+            }
+
+            .scbg-page .button-pack .button {
+                height: 100%;
+                width: 100%;
+                display: -webkit-flex;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size:14px;
+                font-weight:bold;
+                color:rgba(255,255,255,1);
+            }
+
+            .scbg-page .button-pack .button span {
+                letter-spacing:1px;
+            }
+
+            .scbg-page .button-pack .button img {
+                width: 14px;
+                height: 14px;
+                margin-left: 4px;
+            }
+
+            
+
+
+            
+            
+
+		</style>
+	</head>
+	<body>
+		<div id="scdy_page" class="scbg-page">
+            <div class="top-pack">
+                <div class="line"></div>
+                <div class="list-pack">
+                    <div class="gradual-pack"></div>
+                    <div class="item-pack">
+                        <div class="title">产品调研</div>
+                        <div class="content">产品的进货价，零售价及市场维价情况分析</div>
+                    </div>
+                    <div class="item-pack">
+                        <div class="title">产品调研</div>
+                        <div class="content">产品的进货价，零售价及市场维价情况分析</div>
+                    </div>
+                    <div class="item-pack">
+                        <div class="title">产品调研</div>
+                        <div class="content">产品的进货价，零售价及市场维价情况分析</div>
+                    </div>
+                    <div class="item-pack">
+                        <div class="title">产品调研</div>
+                        <div class="content">产品的进货价，零售价及市场维价情况分析</div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-pack">
+                <div class="button submit">
+                    <span>提交</span>
+                </div>
+            </div>
+		</div>
+
+
+		<!-- 通用类库 -->
+		<script src="js/lib/zepto.js"></script>
+		<script src="js/lib/zepto.touch.js"></script>
+		<script src="js/lib/fastclick.js"></script>
+		<script src="js/lib/mui/js/mui.min.js"></script>
+
+		<script>
+			$(function () {
+				// 首先取消js在客户端的点击事件300毫秒延迟
+				FastClick.attach(document.body);
+
+				// 初始化加载更多
+				mui.init({
+					swipeBack: true //启用右滑关闭功能
+				});
+
+			});
+		</script>
+	</body>
+</html>
