@@ -356,34 +356,15 @@
                         }
                     }
                     type = $('.bottom-pack .checked').attr('value')
-                    $.ajax({
-							url: "http://47.92.216.253/tools/wechatpn.ashx?action=IntegralGiftOperate",
-							type: "post",
-							dataType: "json",
-							data: {
-								company: stripscript(company),
-								contact: stripscript(contact),
-								male: male,
-                                phone: stripscript(phone),
-                                type: type
-							},
-							success: function(result) {
-								if (result.state === 1) {
-									mui.alert(result.msg, '平台服务', function() {
-										console.info('你刚关闭了警告框');
-									});
-								} else {
-									mui.alert(result.msg, '平台服务', function() {
-										console.info('你刚关闭了警告框');
-									});
-								}
-							},
-							error: function() {
-								mui.alert('获取调研意向单出错！', '平台服务', function() {
-									console.info('你刚关闭了警告框');
-								});
-							}
-						});
+
+                    window.sessionStorage.setItem('dyInfo', JSON.stringify({
+                        company: stripscript(company),
+                        contact: stripscript(contact),
+                        male: male,
+                        phone: stripscript(phone),
+                        type: type
+                    }))
+                    window.location.href = 'dyyxd.html?time='+new Date().getTime();
                 })
 
 

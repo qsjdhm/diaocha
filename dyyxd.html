@@ -167,7 +167,7 @@
                     <img src="./i/dyyxd/编组@2x.png" />
                 </div>
                 <div class="pro-list">
-                    <div class="item-pack">
+                    <!--<div class="item-pack">
                         <div class="content">产品的进货价，零售价及市场维价情况分析</div>
                         <div class="schedule-item-white-check">
                             <div value="0" class="check"></div>
@@ -190,7 +190,7 @@
                         <div class="schedule-item-white-check">
                             <div value="0" class="check"></div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="other-pack">
                     <div class="label">其他</div>
@@ -227,9 +227,76 @@
 				mui.init({
 					swipeBack: true //启用右滑关闭功能
                 });
+
+                getList()
+
+                // 获取列表
+                function getList () {
+                    console.info(JSON.parse(window.sessionStorage.dyInfo))
+                    // window.sessionStorage.setItem('dyInfo', {
+                    //     company: stripscript(company),
+                    //     contact: stripscript(contact),
+                    //     male: male,
+                    //     phone: stripscript(phone),
+                    //     type: type
+                    // })
+
+                    $.ajax({
+                        url: "https://groundpushbff.kangyw.com/markettheme/list",
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            contentType: 0
+                        }),
+                        success: function(result) {
+                            if (result.code === 'K-000000') {
+                                var html = '';
+                                for (var i=0,len=result.context.marketThemeVOList.length; i<len; i++) {
+                                    if (i%2 == 0) {
+                                        html += '<div class="item-pack">';
+                                        html += '    <div class="content">'+result.context.marketThemeVOList[i].content+'</div>';
+                                        html += '    <div class="schedule-item-white-check">';
+                                        html += '        <div id='+result.context.marketThemeVOList[i].id+' value="0" class="check"></div>';
+                                        html += '    </div>';
+                                        html += '</div>';
+                                    } else {
+                                        html += '<div class="item-pack stripes">';
+                                        html += '    <div class="content">'+result.context.marketThemeVOList[i].content+'</div>';
+                                        html += '    <div class="schedule-item-white-check">';
+                                        html += '        <div id='+result.context.marketThemeVOList[i].id+' value="0" class="check"></div>';
+                                        html += '    </div>';
+                                        html += '</div>';
+                                    }
+                                }
+                                $('.pro-list').append(html)
+                            } else {
+                                mui.alert(result.msg, '平台服务', function() {
+                                    console.info('你刚关闭了警告框');
+                                });
+                            }
+                            console.info(result)
+                            // if (result.state === 1) {
+                            //     mui.alert(result.msg, '平台服务', function() {
+                            //         console.info('你刚关闭了警告框');
+                            //     });
+                            // } else {
+                            //     mui.alert(result.msg, '平台服务', function() {
+                            //         console.info('你刚关闭了警告框');
+                            //     });
+                            // }
+                        },
+                        error: function() {
+                            mui.alert('获取调研意向单出错！', '平台服务', function() {
+                                console.info('你刚关闭了警告框');
+                            });
+                        }
+                    });
+
+                }
                 
                 // 选框点击
-                $('.check').on('click', function () {
+                $('.schedule-item-white-check div').live('click', function () {
                     var selectValue = $(this).attr('value');
                     if (selectValue === '0') {
                         $(this).attr('value', '1');
@@ -242,6 +309,8 @@
                         $(this).addClass('check');
                     }
                 })
+
+
 
 				$('.male').live('click', function(){
                     $('.male').removeClass('checked')

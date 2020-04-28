@@ -82,7 +82,15 @@
 				// 初始化加载更多
 				mui.init({
 					swipeBack: true //启用右滑关闭功能
-				});
+                });
+                
+                $('.qycy-pack').tap(function(){
+                    window.location.href = 'scdy.html?time='+new Date().getTime();
+                })
+
+                $('.hycb-pack').tap(function(){
+                    window.location.href = 'hycb.html?time='+new Date().getTime();
+                })
 
 			});
 		</script>
