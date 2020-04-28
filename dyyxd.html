@@ -166,35 +166,10 @@
                 <div class="title-pack">
                     <img src="./i/dyyxd/编组@2x.png" />
                 </div>
-                <div class="pro-list">
-                    <!--<div class="item-pack">
-                        <div class="content">产品的进货价，零售价及市场维价情况分析</div>
-                        <div class="schedule-item-white-check">
-                            <div value="0" class="check"></div>
-                        </div>
-                    </div>
-                    <div class="item-pack stripes">
-                        <div class="content">产品的进货价情况分析</div>
-                        <div class="schedule-item-white-check">
-                            <div value="0" class="check"></div>
-                        </div>
-                    </div>
-                    <div class="item-pack">
-                        <div class="content">产品的进货价，零售价及市场维价情况分析</div>
-                        <div class="schedule-item-white-check">
-                            <div value="0" class="check"></div>
-                        </div>
-                    </div>
-                    <div class="item-pack stripes">
-                        <div class="content">产品的进货价情况分析</div>
-                        <div class="schedule-item-white-check">
-                            <div value="0" class="check"></div>
-                        </div>
-                    </div>-->
-                </div>
+                <div class="pro-list"></div>
                 <div class="other-pack">
                     <div class="label">其他</div>
-                        <input type="text" placeholder="请输入">
+                        <input id="other" type="text" placeholder="请输入">
                     </div>
                     <div class="dot-pack">
                         <img src="./i/dyyxd/dian.png" />
@@ -232,15 +207,6 @@
 
                 // 获取列表
                 function getList () {
-                    console.info(JSON.parse(window.sessionStorage.dyInfo))
-                    // window.sessionStorage.setItem('dyInfo', {
-                    //     company: stripscript(company),
-                    //     contact: stripscript(contact),
-                    //     male: male,
-                    //     phone: stripscript(phone),
-                    //     type: type
-                    // })
-
                     $.ajax({
                         url: "https://groundpushbff.kangyw.com/markettheme/list",
                         type: 'POST',
@@ -275,24 +241,13 @@
                                     console.info('你刚关闭了警告框');
                                 });
                             }
-                            console.info(result)
-                            // if (result.state === 1) {
-                            //     mui.alert(result.msg, '平台服务', function() {
-                            //         console.info('你刚关闭了警告框');
-                            //     });
-                            // } else {
-                            //     mui.alert(result.msg, '平台服务', function() {
-                            //         console.info('你刚关闭了警告框');
-                            //     });
-                            // }
                         },
                         error: function() {
-                            mui.alert('获取调研意向单出错！', '平台服务', function() {
+                            mui.alert('获取列表出错！', '平台服务', function() {
                                 console.info('你刚关闭了警告框');
                             });
                         }
                     });
-
                 }
                 
                 // 选框点击
@@ -310,78 +265,34 @@
                     }
                 })
 
-
-
-				$('.male').live('click', function(){
-                    $('.male').removeClass('checked')
-                    $(this).addClass('checked')
-					// window.location.href = 'personal.html'
-                })
-                
-                $('.type').live('click', function(){
-                    $('.type').removeClass('checked')
-                    $(this).addClass('checked')
-                })
-                
                 $('.submit').live('click', function(){
-                    var company = '';
-                    var contact = '';
-                    var male = 0;
-                    var phone = '';
-                    var type = '';
-                    if ($.trim($('#company').val()) == '') {
-						mui.alert('请输入您的企业名称', '平台服务', function () {});
+					var checkedLen = $('.schedule-item-white-check .checked').length;
+					if (checkedLen == 0) {
+						mui.alert('请至少选中一项', '平台服务', function () {});
 						return false
-                    } else {
-                        company = $.trim($('#company').val())
-                    }
-                    if ($.trim($('#contact').val()) == '') {
-						mui.alert('请输入联系人', '平台服务', function () {});
-						return false
-                    } else {
-                        contact = $.trim($('#contact').val())
-                    }
-                    male = $('.mid-pack .checked').attr('value')
-                    if ($.trim($('#phone').val()) == '') {
-						mui.alert('请输入手机号', '平台服务', function () {});
-						return false
-					} else {
-                        if (!isPoneAvailable($.trim($('#phone').val()))) {
-                            mui.alert('请输入正确格式的手机号', '平台服务', function () {});
-                            return false
-                        } else {
-                            phone = $.trim($('#phone').val())
-                        }
-                    }
-                    type = $('.bottom-pack .checked').attr('value')
-                    $.ajax({
-							url: "http://47.92.216.253/tools/wechatpn.ashx?action=IntegralGiftOperate",
-							type: "post",
-							dataType: "json",
-							data: {
-								company: stripscript(company),
-								contact: stripscript(contact),
-								male: male,
-                                phone: stripscript(phone),
-                                type: type
-							},
-							success: function(result) {
-								if (result.state === 1) {
-									mui.alert(result.msg, '平台服务', function() {
-										console.info('你刚关闭了警告框');
-									});
-								} else {
-									mui.alert(result.msg, '平台服务', function() {
-										console.info('你刚关闭了警告框');
-									});
-								}
-							},
-							error: function() {
-								mui.alert('获取调研意向单出错！', '平台服务', function() {
-									console.info('你刚关闭了警告框');
-								});
-							}
-						});
+					}
+					var content = '';
+					for (var i=0; i<checkedLen; i++) {
+						if (i > 0) {
+							content += ';'+$($('.schedule-item-white-check .checked')[i]).parent().prev().html()
+						} else {
+							content += $($('.schedule-item-white-check .checked')[i]).parent().prev().html()
+						}
+					}
+
+					var data = {
+						"conpanyName":JSON.parse(window.sessionStorage.dyInfo).conpanyName,
+						"contractName":JSON.parse(window.sessionStorage.dyInfo).contractName,
+						"contractNo":JSON.parse(window.sessionStorage.dyInfo).contractNo,
+						"sex":JSON.parse(window.sessionStorage.dyInfo).sex,
+						"contentType":JSON.parse(window.sessionStorage.dyInfo).contentType,
+						"content":content,
+						"remark":stripscript($.trim($('#other').val()))
+					}
+					console.info(data)
+
+	                window.sessionStorage.setItem('dyInfo', JSON.stringify(data))
+	                window.location.href = 'scbg.html?time='+new Date().getTime();
                 })
 
 

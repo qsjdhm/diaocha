@@ -127,25 +127,6 @@
                 <div class="line"></div>
                 <div class="list-pack">
                     <div class="gradual-pack"></div>
-                    <div class="item-pack">
-                        <div class="title">产品调研</div>
-                        <div class="content">产品的进货价，零售价及市场维价情况分析</div>
-                    </div>
-                    <div class="item-pack">
-                        <div class="title">产品调研</div>
-                        <div class="content">产品的进货价，零售价及市场维价情况分析</div>
-                    </div>
-                    <div class="item-pack">
-                        <div class="title">产品调研</div>
-                        <div class="content">产品的进货价，零售价及市场维价情况分析</div>
-                    </div>
-                    <div style="border-bottom:0px dashed #ddd!important;" class="item-pack">
-                        <div class="title">产品调研</div>
-                        <div class="content">产品的进货价，零售价及市场维价情况分析</div>
-                    </div>
-                    <div class="dot-pack">
-                        <img src="./i/dyyxd/dian.png" />
-                    </div>
                 </div>
             </div>
             <div class="button-pack">
@@ -171,6 +152,69 @@
 				mui.init({
 					swipeBack: true //启用右滑关闭功能
 				});
+
+				getList()
+
+				// 获取列表
+				function getList () {
+					var contentList = JSON.parse(window.sessionStorage.dyInfo).content.split(';');
+					var contentType = JSON.parse(window.sessionStorage.dyInfo).contentType;
+					var contentName = '';
+					if (contentType == '0') {
+						contentName = '产品调研'
+					} else if (contentType == '1') {
+						contentName = '市场调研'
+					} else if (contentType == '2') {
+						contentName = '政策调研'
+					} else if (contentType == '3') {
+						contentName = '厂家调研'
+					}
+
+					var html = '';
+					for (var i=0; i< contentList.length; i++) {
+						if (i == contentList.length-1) {
+							html += '<div style="border-bottom:0px dashed #ddd!important;" class="item-pack">'
+							html += '	<div class="title">'+contentName+'</div>'
+							html += '	<div class="content">'+contentList[i]+'</div>'
+							html += '</div>'
+							html += '<div class="dot-pack">'
+							html += '	<img src="./i/dyyxd/dian.png" />'
+							html += '</div>'
+						} else {
+							html += '<div class="item-pack">'
+							html += '	<div class="title">'+contentName+'</div>'
+							html += '	<div class="content">'+contentList[i]+'</div>'
+							html += '</div>'
+						}
+					}
+					$('.list-pack').append(html)
+				}
+
+				$('.submit').live('click', function(){
+					$.ajax({
+						url: "https://groundpushbff.kangyw.com/marketorder/add",
+						type: 'POST',
+						dataType: 'json',
+						contentType: 'application/json',
+						data: window.sessionStorage.dyInfo,
+						success: function(result) {
+							if (result.code === 'K-000000') {
+								mui.alert('提交成功，感谢贵企业选择我们专业的服务调研产品！', '平台服务', function() {
+									console.info('你刚关闭了警告框');
+								});
+							} else {
+								mui.alert(result.msg, '平台服务', function() {
+									console.info('你刚关闭了警告框');
+								});
+							}
+						},
+						error: function() {
+							mui.alert('提交调研意向单出错！', '平台服务', function() {
+								console.info('你刚关闭了警告框');
+							});
+						}
+					});
+				})
 
 			});
 		</script>
