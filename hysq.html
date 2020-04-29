@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>会议筹办申请</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="js/lib/mui/css/mui.min.css" />
+    <link rel="stylesheet" href="js/lib/mui/css/mui.picker.min.css">
+    <link rel="stylesheet" href="js/lib/mui/css/mui.picker.css">
+    <link rel="stylesheet" href="js/lib/mui/css/mui.poppicker.css">
+    <link rel="stylesheet" href="css/app.css" />
+    <style>
+        .container {
+            width: 100%;
+            height: auto;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background-color: rgba(254,223,223,1);
+        }
+        
+        .container .top {
+            width: 100%;
+            padding: 8px 0 28px 0;
+            background-color: rgba(253,96,77,1);
+        }
+
+        /* 会议申请图片 */
+        .container .top .apply-metting {
+            height: 383px;
+            margin: 0 10px 36px 10px;
+            background-image: url('./i/hysq/apply_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            
+        }
+
+        /* 填写申请 */
+        .container .top .write-apply {
+            height: 285px;
+            margin: 36px 10px 0 10px;
+            background-color: #FFFFFF;
+            position: relative;
+            padding: 20px;
+        }
+        .container .top .write-apply .title {
+            width: 169px;
+            height: 58px;
+            background-image: url('./i/hysq/apply_write.png');
+            position: absolute;
+            left: 0;
+            top: -25px;
+        }
+        .container .top .write-apply .company {
+            padding-top: 25px;
+            border-bottom: 1px solid rgba(216,216,216,0.4);
+        }
+        .container .top .write-apply .company input {
+            border: none;
+            height: 38px;
+            font-size: 14px;
+            color: #3D3D3D;
+            padding: 0;
+            margin: 0;
+        }
+        .container .top .write-apply .company input::-webkit-input-placeholder {
+            color:rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top">
+            <!-- 会议申请图片 -->
+            <div class="apply-metting"></div>
+            <!-- 填写申请 -->
+            <div class="write-apply">
+                <div class="title"></div>
+                <div class="company">
+                    <input
+                        type="text"
+                        placeholder="填写申办公司名称（必填）"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通用类库 -->
+    <script src="js/lib/zepto.js"></script>
+    <script src="js/lib/zepto.touch.js"></script>
+    <script src="js/lib/fastclick.js"></script>
+    <script src="js/lib/mui/js/mui.min.js"></script>
+    <script src="js/lib/mui/js/mui.picker.min.js"></script>
+
+    <script>
+
+    </script>
+</body>
+</html>

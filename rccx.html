@@ -1,288 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>市场调研</title>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="description" content="" />
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-		<meta name="renderer" content="webkit" />
-		<meta http-equiv="Cache-Control" content="no-siteapp" />
-		<meta name="format-detection" content="telephone=no" />
-        <link rel="stylesheet" href="js/lib/mui/css/mui.min.css" />
-        <link rel="stylesheet" href="js/lib/mui/css/mui.picker.min.css">
-        <link rel="stylesheet" href="js/lib/mui/css/mui.picker.css">
-        <link rel="stylesheet" href="js/lib/mui/css/mui.poppicker.css">
-        <link rel="stylesheet" href="css/app.css" />
-        <style>
-            .rccx-container {
-                width: 100%;
-                height: auto;
-                background-image: url('./i/rccx/background.png');
-                background-repeat: no-repeat;
-                background-size: 100% auto;
-                overflow-x: hidden;
-                overflow-y: auto;
-                background-color: rgb(192,26, 8);
-            }
+    <title>日程查询</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="js/lib/mui/css/mui.min.css" />
+    <link rel="stylesheet" href="js/lib/mui/css/mui.picker.min.css">
+    <link rel="stylesheet" href="js/lib/mui/css/mui.picker.css">
+    <link rel="stylesheet" href="js/lib/mui/css/mui.poppicker.css">
+    <link rel="stylesheet" href="css/app.css" />
+    <style>
+        .rccx-container {
+            width: 100%;
+            height: auto;
+            background-image: url('./i/rccx/background.png');
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: rgb(192,26, 8);
+        }
 
-            /* 主标 */
-            .rccx-container  .main-mark {
-                width: 237px;
-                height: 194px;
-                margin: 45px auto 31px auto;
-                background-image: url('./i/rccx/main_mark.png');
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-            }
+        /* 主标 */
+        .rccx-container  .main-mark {
+            width: 237px;
+            height: 194px;
+            margin: 45px auto 31px auto;
+            background-image: url('./i/rccx/main_mark.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
 
-            /* screen */
-            .rccx-container .screen {
-                height: 37px;
-                width: 177px;
-                margin: 0 177.61px 0 20.39px;
-                background: url('./i/rccx/screen.png') 100% 100% no-repeat;
-            }
+        /* screen */
+        .rccx-container .screen {
+            height: 37px;
+            width: 177px;
+            margin: 0 177.61px 0 20.39px;
+            background: url('./i/rccx/screen.png') 100% 100% no-repeat;
+        }
 
-            /* 日程筛选 */
-            .rccx-container .date-filter {
-                height: 204px;
-                background-color: rgb(255,255,255);
-                margin: 0 16px 0 16px;
-                position: relative;
-                padding: 0 15px 0 15px;
+        /* 日程筛选 */
+        .rccx-container .date-filter {
+            height: 204px;
+            background-color: rgb(255,255,255);
+            margin: 0 16px 0 16px;
+            position: relative;
+            padding: 0 15px 0 15px;
 
-            }
-            .rccx-container .date-filter .date-filter-title {
-                position: absolute;
-                width: 169px;
-                height: 58px;
-                background-image: url('./i/rccx/title.png');
-                background-size: 100% 100%;
-                background-repeat: no-repeat;
-                top: -22px;
-                left: -5px;
-            }
+        }
+        .rccx-container .date-filter .date-filter-title {
+            position: absolute;
+            width: 169px;
+            height: 58px;
+            background-image: url('./i/rccx/title.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            top: -22px;
+            left: -5px;
+        }
 
-            /* 时间选择器 */
-            .rccx-container .date-filter .period {
-                width: 100%;
-                height: 102px;
-                padding-top: 50px;
-                border-bottom: 1px solid rgba(216,216,216,0.4);
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-            }
-            .rccx-container .date-filter .period .start,.end {
-                width: 40%;
-                height: 52px;
-            }
-            .rccx-container .date-filter .period .start .start-title {
-                width: 48px;
-                height: 18px;
-                color: rgba(46,46,71,0.4);
-                font-size: 12px;
-                line-height: 18px;
-            }
-            .rccx-container .date-filter .period .start .start-date-select {
-                width: 100%;
-                height: 34px;
-            }
-            .rccx-container .date-filter .period .start .start-date-select #startTime {
-                border: none;
-                font-size: 12px;
-                padding-left: 0px;
-                color:rgba(46,46,71,0.4);
-            }
-            .rccx-container .date-filter .period .end .end-title {
-                width: 48px;
-                height: 18px;
-                color: rgba(46,46,71,0.4);
-                font-size: 12px;
-                line-height: 18px;
-            }
-            .rccx-container .date-filter .period .end .end-date-select {
-                width: 100%;
-                height: 34px;
-            }
-            .rccx-container .date-filter .period .end .end-date-select #endTime {
-                border: none;
-                font-size: 12px;
-                padding-left: 0px;
-                color:rgba(46,46,71,0.4);
-            }
-            .rccx-container .date-filter .period .to {
-                width: 20%;
-                height: 52px;
-                font-size: 12px;
-                text-align: center;
-                line-height: 52px;
-                color: rgba(171,171,181);
-            }
+        /* 时间选择器 */
+        .rccx-container .date-filter .period {
+            width: 100%;
+            height: 102px;
+            padding-top: 50px;
+            border-bottom: 1px solid rgba(216,216,216,0.4);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .rccx-container .date-filter .period .start,.end {
+            width: 40%;
+            height: 52px;
+        }
+        .rccx-container .date-filter .period .start .start-title {
+            width: 48px;
+            height: 18px;
+            color: rgba(46,46,71,0.4);
+            font-size: 12px;
+            line-height: 18px;
+        }
+        .rccx-container .date-filter .period .start .start-date-select {
+            width: 100%;
+            height: 34px;
+        }
+        .rccx-container .date-filter .period .start .start-date-select #startTime {
+            border: none;
+            font-size: 12px;
+            padding-left: 0px;
+            color:rgba(46,46,71,0.4);
+        }
+        .rccx-container .date-filter .period .end .end-title {
+            width: 48px;
+            height: 18px;
+            color: rgba(46,46,71,0.4);
+            font-size: 12px;
+            line-height: 18px;
+        }
+        .rccx-container .date-filter .period .end .end-date-select {
+            width: 100%;
+            height: 34px;
+        }
+        .rccx-container .date-filter .period .end .end-date-select #endTime {
+            border: none;
+            font-size: 12px;
+            padding-left: 0px;
+            color:rgba(46,46,71,0.4);
+        }
+        .rccx-container .date-filter .period .to {
+            width: 20%;
+            height: 52px;
+            font-size: 12px;
+            text-align: center;
+            line-height: 52px;
+            color: rgba(171,171,181);
+        }
 
-            /* 会议地点 */
-            .rccx-container .date-filter .metting {
-                width: 100%;
-                height: 46px;
-                border-bottom: 1px solid rgba(216,216,216,0.4);
-                text-align: center;
-            }
-            .rccx-container .date-filter .metting #mettingSelect {
-                margin-top: 10px;
-                text-align: left;
-                border: none;
-                font-size: 12px;
-                padding-left: 0px;
-                color:rgba(46,46,71,0.4);
-                width: 100%;
-                height: 34px;
-            }
+        /* 会议地点 */
+        .rccx-container .date-filter .metting {
+            width: 100%;
+            height: 46px;
+            border-bottom: 1px solid rgba(216,216,216,0.4);
+            text-align: center;
+        }
+        .rccx-container .date-filter .metting #mettingSelect {
+            margin-top: 10px;
+            text-align: left;
+            border: none;
+            font-size: 12px;
+            padding-left: 0px;
+            color:rgba(46,46,71,0.4);
+            width: 100%;
+            height: 34px;
+        }
 
-            /* 参会人数 */
-            .rccx-container .date-filter .number-people {
-                width: 100%;
-                height: 46px;
-            }
-            .rccx-container .date-filter .number-people #numberPeople {
-                border: none;
-                font-size: 12px;
-                padding: 6px 0 0 0;
-            }
-            .rccx-container .date-filter .number-people input::-webkit-input-placeholder {
-                color: rgba(46,46,71,0.4);
-            }
+        /* 搜索按钮 */
+        .rccx-container .date-filter .search {
+            width: 152px;
+            height: 44px;
+            background:linear-gradient(163deg,rgba(249,172,0,1) 0%,rgba(250,149,0,1) 100%);
+            border-radius: 24px;
+            text-align: center;
+            line-height: 44px;
+            font-size: 14px;
+            color:rgba(250,250,250,1);
+            font-weight: 600;
+            position: absolute;
+            bottom: -22px;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-            /* 日程 */
-            .rccx-container .schedule {
-                margin: 18px 16px 0 16px;
-            }
-            .rccx-container .schedule .schedule-title {
-                width: 100%;
-                height: 35px;
-                background-color: rgba(185,14,6,1);
-                color: rgba(250,250,250,1);
-                font-size: 14px;
-                text-align: center;
-                line-height: 35px;
-                font-weight: 600;
-            }
-            .rccx-container .schedule .schedule-item-white {
-                width: 100%;
-                height: 76px;
-                background-color: rgba(255,255,255,1);
-                display: flex;
-                overflow: hidden;
-            }
-            .rccx-container .schedule .schedule-item-white .schedule-item-white-info {
-                flex: 1;
-                overflow: hidden;
-                padding-left: 20px;
-            }
-            .rccx-container .schedule .schedule-item-white .schedule-item-white-info .time {
-                width: 100%;
-                height: 14px;
-                margin-top: 20px;
-                color: rgba(0,0,0,0.4);
-                font-size: 14px;
-                line-height: 14px;
-            }
-            .rccx-container .schedule .schedule-item-white .schedule-item-white-info .info {
-                width: 100%;
-                height: 14px;
-                color: rgba(0,0,0,0.8);
-                font-size: 14px;
-                line-height: 14px;
-                font-weight: 600;
-                margin-top: 8px;
-            }
-            .rccx-container .schedule .schedule-item-white .schedule-item-white-check {
-                height: 100%;
-                width: 75px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .rccx-container .schedule .schedule-item-white .schedule-item-white-check .check {
-                width: 15px;
-                height: 15px;
-                background-image: url('./i/rccx/check.png');
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-            }
-            .rccx-container .schedule .schedule-item-white .schedule-item-white-check .checked {
-                width: 15px;
-                height: 15px;
-                background-image: url('./i/rccx/checked.png');
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-            }
+        /* 日程 */
+        .rccx-container .schedule {
+            margin: 29px 16px 0 16px;
+        }
+        .rccx-container .schedule .schedule-title {
+            width: 100%;
+            height: 35px;
+            background-color: rgba(185,14,6,1);
+            color: rgba(250,250,250,1);
+            font-size: 14px;
+            text-align: center;
+            line-height: 35px;
+            font-weight: 600;
+        }
+        .rccx-container .schedule .schedule-item-white {
+            width: 100%;
+            height: 76px;
+            background-color: rgba(255,255,255,1);
+            display: flex;
+            overflow: hidden;
+        }
+        .rccx-container .schedule .schedule-item-white .schedule-item-white-info {
+            flex: 1;
+            overflow: hidden;
+            padding-left: 20px;
+        }
+        .rccx-container .schedule .schedule-item-white .schedule-item-white-info .time {
+            width: 100%;
+            height: 14px;
+            margin-top: 20px;
+            color: rgba(0,0,0,0.4);
+            font-size: 14px;
+            line-height: 14px;
+        }
+        .rccx-container .schedule .schedule-item-white .schedule-item-white-info .info {
+            width: 100%;
+            height: 14px;
+            color: rgba(0,0,0,0.8);
+            font-size: 14px;
+            line-height: 14px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .rccx-container .schedule .schedule-item-white .schedule-item-white-check {
+            height: 100%;
+            width: 75px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .rccx-container .schedule .schedule-item-white .schedule-item-white-check .check {
+            width: 15px;
+            height: 15px;
+            background-image: url('./i/rccx/check.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .rccx-container .schedule .schedule-item-white .schedule-item-white-check .checked {
+            width: 15px;
+            height: 15px;
+            background-image: url('./i/rccx/checked.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
 
-            .rccx-container .schedule .schedule-item-gray {
-                width: 100%;
-                height: 76px;
-                background-color: rgba(247,244,243,0.8);
-                display: flex;
-                overflow: hidden;
-            }
-            .rccx-container .schedule .schedule-item-gray .schedule-item-gray-info {
-                flex: 1;
-                overflow: hidden;
-                padding-left: 20px;
-            }
-            .rccx-container .schedule .schedule-item-gray .schedule-item-gray-info .time {
-                width: 100%;
-                height: 14px;
-                margin-top: 20px;
-                color: rgba(0,0,0,0.4);
-                font-size: 14px;
-                line-height: 14px;
-            }
-            .rccx-container .schedule .schedule-item-gray .schedule-item-gray-info .info {
-                width: 100%;
-                height: 14px;
-                color: rgba(0,0,0,0.8);
-                font-size: 14px;
-                line-height: 14px;
-                font-weight: 600;
-                margin-top: 8px;
-            }
-            .rccx-container .schedule .schedule-item-gray .schedule-item-gray-check {
-                height: 100%;
-                width: 75px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .rccx-container .schedule .schedule-item-gray .schedule-item-gray-check .check {
-                width: 15px;
-                height: 15px;
-                background-image: url('./i/rccx/check.png');
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-            }
-            .rccx-container .schedule .schedule-item-gray .schedule-item-gray-check .checked {
-                width: 15px;
-                height: 15px;
-                background-image: url('./i/rccx/checked.png');
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-            }
+        .rccx-container .schedule .schedule-item-gray {
+            width: 100%;
+            height: 76px;
+            background-color: rgba(247,244,243,0.8);
+            display: flex;
+            overflow: hidden;
+        }
+        .rccx-container .schedule .schedule-item-gray .schedule-item-gray-info {
+            flex: 1;
+            overflow: hidden;
+            padding-left: 20px;
+        }
+        .rccx-container .schedule .schedule-item-gray .schedule-item-gray-info .time {
+            width: 100%;
+            height: 14px;
+            margin-top: 20px;
+            color: rgba(0,0,0,0.4);
+            font-size: 14px;
+            line-height: 14px;
+        }
+        .rccx-container .schedule .schedule-item-gray .schedule-item-gray-info .info {
+            width: 100%;
+            height: 14px;
+            color: rgba(0,0,0,0.8);
+            font-size: 14px;
+            line-height: 14px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .rccx-container .schedule .schedule-item-gray .schedule-item-gray-check {
+            height: 100%;
+            width: 75px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .rccx-container .schedule .schedule-item-gray .schedule-item-gray-check .check {
+            width: 15px;
+            height: 15px;
+            background-image: url('./i/rccx/check.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .rccx-container .schedule .schedule-item-gray .schedule-item-gray-check .checked {
+            width: 15px;
+            height: 15px;
+            background-image: url('./i/rccx/checked.png') !important;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
 
-            /* 提交按钮 */
-            .save {
-                width: 226px;
-                height: 44px;
-                background:linear-gradient(163deg,rgba(249,172,0,1) 0%,rgba(250,149,0,1) 100%);
-                border-radius:24px;
-                text-align: center;
-                font-size: 14px;
-                font-weight: 600;
-                line-height: 44px;
-                color: rgba(250,250,250,1);
-                margin: 19px auto;
-            }
-        </style>
+        /* 提交按钮 */
+        .save {
+            width: 226px;
+            height: 44px;
+            background:linear-gradient(163deg,rgba(249,172,0,1) 0%,rgba(250,149,0,1) 100%);
+            border-radius:24px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 44px;
+            color: rgba(250,250,250,1);
+            margin: 19px auto;
+        }
+    </style>
 </head>
 <body>
     <div class="rccx-container">
@@ -331,83 +336,20 @@
                     请选择会议地点
                 </button>
             </div>
-            <!-- 参会人数 -->
-            <div class="number-people">
-                <input 
-                    id="numberPeople"
-                    type="text" 
-                    placeholder="请输入参会人数"
-                />
+            <!-- 提交按钮 -->
+            <div class="search">
+                <span>搜索</span>
             </div>
         </div>
         <!-- 日程 -->
-        <div class="schedule">
-            <div class="schedule-title">
-                <span>4月1日</span>
-            </div>
-            <div class="schedule-item-white">
-                <div class="schedule-item-white-info">
-                    <div class="time">
-                        <span>9：00-11：00</span>
-                    </div>
-                    <div class="info">
-                        <span>疫情下的大健康趋势（上）</span>
-                    </div>
-                </div>
-                <div class="schedule-item-white-check">
-                    <div value="0" class="check"></div>
-                </div>
-            </div>
-            <div class="schedule-item-gray">
-                <div class="schedule-item-gray-info">
-                    <div class="time">
-                        <span>14：00-18：00</span>
-                    </div>
-                    <div class="info">
-                        <span>疫情下的大健康趋势（下）</span>
-                    </div>
-                </div>
-                <div class="schedule-item-gray-check">
-                    <div value="0" class="check"></div>
-                </div>
-            </div>
-        </div>
-        <div class="schedule">
-            <div class="schedule-title">
-                <span>4月3日</span>
-            </div>
-            <div class="schedule-item-white">
-                <div class="schedule-item-white-info">
-                    <div class="time">
-                        <span>9：00-11：00</span>
-                    </div>
-                    <div class="info">
-                        <span>疫情下的大健康趋势（上）</span>
-                    </div>
-                </div>
-                <div class="schedule-item-white-check">
-                    <div value="0" class="check"></div>
-                </div>
-            </div>
-            <div class="schedule-item-gray">
-                <div class="schedule-item-gray-info">
-                    <div class="time">
-                        <span>14：00-18：00</span>
-                    </div>
-                    <div class="info">
-                        <span>疫情下的大健康趋势（下）</span>
-                    </div>
-                </div>
-                <div class="schedule-item-gray-check">
-                    <div value="0" class="check"></div>
-                </div>
-            </div>
+        <div class="schedule-pack">
         </div>
         <!-- 提交按钮 -->
         <div class="save">
             <span>提交</span>
         </div>
     </div>
+
 
     <!-- 通用类库 -->
     <script src="js/lib/zepto.js"></script>
@@ -417,7 +359,118 @@
     <script src="js/lib/mui/js/mui.picker.min.js"></script>
 
     <script>
-        mui.init();
+        // 首先取消js在客户端的点击事件300毫秒延迟
+        FastClick.attach(document.body);
+
+        // 初始化加载更多
+        mui.init({
+	        swipeBack: true //启用右滑关闭功能
+        });
+
+        getList()
+
+        // 获取列表
+        function getList (startTime, endTime, location) {
+        	var requestData = {
+		        contentType: 0
+            }
+            if (startTime != undefined) {
+	            requestData = {
+		            contentType: 0,
+		            startTime: startTime,
+		            endTime: endTime,
+		            meetingLocal: location
+	            }
+            }
+	        $.ajax({
+		        url: "https://groundpushbff.kangyw.com/meeting/list",
+		        type: 'POST',
+		        dataType: 'json',
+		        contentType: 'application/json',
+		        data: JSON.stringify(requestData),
+		        success: function(result) {
+			        if (result.code === 'K-000000') {
+				        $('.schedule-pack').empty()
+                        // 根据开始时间进行分组
+                        var groupKeyList = [];
+                        var groupList = {};
+
+				        result.context.meetingVOList.push({
+					        articleCoverSource: null,
+					        budgetNum: null,
+					        conpanyName: null,
+					        contentType: 0,
+					        contractName: null,
+					        contractNo: null,
+					        endTime: "2020-04-02 15:27:36.000",
+					        id: 6,
+					        meetingDes: "简介",
+					        meetingLocal: "北京",
+					        meetingTheme: "主题122221",
+					        mettingNum: null,
+					        mettingType: null,
+					        serverType: null,
+					        sex: null,
+					        sponsorName: "康友为",
+					        startTime: "2020-04-11 00:25:27.000"
+                        })
+
+				        for (var i=0,len=result.context.meetingVOList.length; i<len; i++) {
+				        	var date = result.context.meetingVOList[i].startTime.split(' ')[0]
+                            // 这一天数组中没有
+				            if (groupKeyList.indexOf(date) == -1) {
+					            groupKeyList.push(date)
+					            groupList[date] = []
+					            groupList[date].push(result.context.meetingVOList[i])
+                            } else {
+				        		// 这一天数组中有
+					            groupList[date].push(result.context.meetingVOList[i])
+                            }
+				        }
+
+				        var html = '';
+				        for(var key in groupList){
+					        html += '<div class="schedule">';
+					        html += '   <div class="schedule-title">';
+					        html += '       <span>'+key+'</span>';
+					        html += '   </div>';
+					        for (var i=0; i<groupList[key].length; i++) {
+						        var startDate = new Date(groupList[key][i].startTime.replace(/-/g,"/"));
+                                var startStr = startDate.getHours()+':'+startDate.getMinutes();
+						        var endDate = new Date(groupList[key][i].endTime.replace(/-/g,"/"));
+						        var endStr = endDate.getHours()+':'+endDate.getMinutes();
+                                html += '<div class="schedule-item-white">';
+						        html += '   <div class="schedule-item-white-info">';
+						        html += '       <div class="time">';
+						        html += '           <span>'+startStr+'-'+endStr+'</span>';
+						        html += '       </div>';
+						        html += '       <div class="info">';
+						        html += '           <span>'+groupList[key][i].meetingTheme+'</span>';
+						        html += '       </div>';
+						        html += '   </div>';
+						        html += '   <div class="schedule-item-white-check">';
+						        html += '       <div value="0" class="check"></div>';
+						        html += '   </div>';
+						        html += '</div>';
+                            }
+					        html += '</div>';
+				        }
+				        $('.schedule-pack').append(html)
+                    } else {
+				        mui.alert(result.msg, '平台服务', function () {
+					        console.info('你刚关闭了警告框');
+				        });
+			        }
+		        },
+		        error: function() {
+			        mui.alert('获取列表出错！', '平台服务', function() {
+				        console.info('你刚关闭了警告框');
+			        });
+		        }
+	        });
+        }
+
+
         // 开始时间选择器
         $('#startTime').on('click', function () {
             var picker = new mui.DtPicker({ type: 'date' });
@@ -448,20 +501,19 @@
                 $('#mettingSelect').css('color', 'rgba(46,46,71,1)');
             })
         })
+
+        $('.search').on('click', function () {
+	        var startTime = $('#startTime').html();
+	        var endTime = $('#endTime').html();
+	        var location = $('#mettingSelect').html();
+	        console.info(startTime)
+	        console.info(endTime)
+	        console.info(location)
+        })
         // 选框点击
-        $('.check').on('click', function () {
-            var selectValue = $(this).attr('value');
-            console.log(selectValue);
-            if (selectValue === '0') {
-                $(this).attr('value', '1');
-                $(this).removeClass('check');
-                $(this).addClass('checked');
-            }
-            if (selectValue === '1') {
-                $(this).attr('value', '0');
-                $(this).removeClass('checked');
-                $(this).addClass('check');
-            }
+        $('.check').live('click', function () {
+            $('.check').removeClass('checked');
+            $(this).addClass('checked');
         })
     </script>
 </body>
