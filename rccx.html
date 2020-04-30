@@ -275,7 +275,7 @@
         }
 
         /* 提交按钮 */
-        .save {
+        .submit {
             width: 226px;
             height: 44px;
             background:linear-gradient(163deg,rgba(249,172,0,1) 0%,rgba(250,149,0,1) 100%);
@@ -345,7 +345,7 @@
         <div class="schedule-pack">
         </div>
         <!-- 提交按钮 -->
-        <div class="save">
+        <div class="submit">
             <span>提交</span>
         </div>
     </div>
@@ -356,6 +356,7 @@
     <script src="js/lib/zepto.touch.js"></script>
     <script src="js/lib/fastclick.js"></script>
     <script src="js/lib/mui/js/mui.min.js"></script>
+    <script src="js/lib/mui/js/city.data.js"></script>
     <script src="js/lib/mui/js/mui.picker.min.js"></script>
 
     <script>
@@ -370,17 +371,18 @@
         getList()
 
         // 获取列表
-        function getList (startTime, endTime, location) {
+        function getList (startTime, endTime, meetingLocal) {
         	var requestData = {
 		        contentType: 0
             }
-            if (startTime != undefined) {
-	            requestData = {
-		            contentType: 0,
-		            startTime: startTime,
-		            endTime: endTime,
-		            meetingLocal: location
-	            }
+            if (startTime != undefined && startTime != '') {
+                requestData.startTimeBegin = startTime
+            }
+            if (endTime != undefined && endTime != '') {
+                requestData.startTimeEnd = endTime
+            }
+            if (meetingLocal != undefined && meetingLocal != '') {
+                requestData.meetingLocal = meetingLocal
             }
 	        $.ajax({
 		        url: "https://groundpushbff.kangyw.com/meeting/list",
@@ -394,27 +396,6 @@
                         // 根据开始时间进行分组
                         var groupKeyList = [];
                         var groupList = {};
-
-				        result.context.meetingVOList.push({
-					        articleCoverSource: null,
-					        budgetNum: null,
-					        conpanyName: null,
-					        contentType: 0,
-					        contractName: null,
-					        contractNo: null,
-					        endTime: "2020-04-02 15:27:36.000",
-					        id: 6,
-					        meetingDes: "简介",
-					        meetingLocal: "北京",
-					        meetingTheme: "主题122221",
-					        mettingNum: null,
-					        mettingType: null,
-					        serverType: null,
-					        sex: null,
-					        sponsorName: "康友为",
-					        startTime: "2020-04-11 00:25:27.000"
-                        })
-
 				        for (var i=0,len=result.context.meetingVOList.length; i<len; i++) {
 				        	var date = result.context.meetingVOList[i].startTime.split(' ')[0]
                             // 这一天数组中没有
@@ -430,16 +411,17 @@
 
 				        var html = '';
 				        for(var key in groupList){
+                            var time = (key.split('-')[1]).replace(/\b(0+)/gi,"")+'月'+(key.split('-')[2]).replace(/\b(0+)/gi,"")+'日';
 					        html += '<div class="schedule">';
 					        html += '   <div class="schedule-title">';
-					        html += '       <span>'+key+'</span>';
+					        html += '       <span>'+time+'</span>';
 					        html += '   </div>';
 					        for (var i=0; i<groupList[key].length; i++) {
 						        var startDate = new Date(groupList[key][i].startTime.replace(/-/g,"/"));
                                 var startStr = startDate.getHours()+':'+startDate.getMinutes();
 						        var endDate = new Date(groupList[key][i].endTime.replace(/-/g,"/"));
 						        var endStr = endDate.getHours()+':'+endDate.getMinutes();
-                                html += '<div class="schedule-item-white">';
+                                html += '<div startTime="'+groupList[key][i].startTime+'" endTime="'+groupList[key][i].endTime+'" meetingTheme="'+groupList[key][i].meetingTheme+'" meetingDes="'+groupList[key][i].meetingDes+'" meetingLocal="'+groupList[key][i].meetingLocal+'" class="schedule-item-white">';
 						        html += '   <div class="schedule-item-white-info">';
 						        html += '       <div class="time">';
 						        html += '           <span>'+startStr+'-'+endStr+'</span>';
@@ -470,12 +452,10 @@
 	        });
         }
 
-
         // 开始时间选择器
         $('#startTime').on('click', function () {
             var picker = new mui.DtPicker({ type: 'date' });
             picker.show(function (res) {
-                console.log(res);
                 $('#startTime').text(res.text);
                 $('#startTime').css('color', 'rgba(46,46,71,1)');
             })
@@ -490,14 +470,10 @@
         })
         // 会议地点选择器
         $('#mettingSelect').on('click', function () {
-            var picker = new mui.PopPicker();
-            var mockData = [
-                { value: 'jn', text: '济南' },
-                { value: 'bj', text: '北京' }
-            ];
-            picker.setData(mockData);
+            var picker = new mui.PopPicker({layer: 2});
+            picker.setData(cityData);
             picker.show(function (res) {
-                $('#mettingSelect').text(res[0].text);
+                $('#mettingSelect').text(res[1].text);
                 $('#mettingSelect').css('color', 'rgba(46,46,71,1)');
             })
         })
@@ -506,14 +482,42 @@
 	        var startTime = $('#startTime').html();
 	        var endTime = $('#endTime').html();
 	        var location = $('#mettingSelect').html();
-	        console.info(startTime)
-	        console.info(endTime)
-	        console.info(location)
+            if ($.trim(startTime) == '请选择开始时间') {
+                startTime = undefined
+            } else {
+                startTime = startTime + ' 00:00:00.000'
+            }
+            if ($.trim(endTime) == '请选择结束时间') {
+                endTime = undefined
+            } else {
+                endTime = endTime + ' 23:59:59.000'
+            }
+            if ($.trim(location) == '请选择会议地点') {
+                location = undefined
+            }
+            getList(startTime, endTime, location)
         })
+
         // 选框点击
         $('.check').live('click', function () {
             $('.check').removeClass('checked');
             $(this).addClass('checked');
+        })
+
+        $('.submit').on('click', function () {
+            var startTime = $('.checked').parents('.schedule-item-white').attr('startTime')
+            var endTime = $('.checked').parents('.schedule-item-white').attr('endTime')
+            var meetingTheme = $('.checked').parents('.schedule-item-white').attr('meetingTheme')
+            var meetingDes = $('.checked').parents('.schedule-item-white').attr('meetingDes')
+            var meetingLocal = $('.checked').parents('.schedule-item-white').attr('meetingLocal')
+            window.sessionStorage.setItem('hyInfo', JSON.stringify({
+                startTime: startTime,
+                endTime: endTime,
+                meetingTheme: meetingTheme,
+                meetingDes: meetingDes,
+                meetingLocal: meetingLocal
+            }))
+            window.location.href = 'sqch.html?time='+new Date().getTime();
         })
     </script>
 </body>

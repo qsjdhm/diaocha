@@ -296,7 +296,7 @@
                     <img src="./i/sqch/背景@2x.png" />
                 </div>
                 <div class="hymc-pack">
-                    <span>会议主题会议主题</span>
+                    <span class="hymc">会议主题会议主题</span>
                 </div>
                 <div class="hyjj-pack">
                     <div class="title-pack">
@@ -304,7 +304,7 @@
                         <span class="whippletree"></span>
                     </div>
                     <div class="content-pack">
-                        <p>
+                        <p class="hyjj">
                             为了促进中国质谱事业发展，提升中国质谱在国际上的学术地位和影响力，由中国质谱学会（中国物理学会质谱分会）、中国化学会质谱分析专业委员会和中国仪器仪表学会分析仪器分会质谱仪器专业委员会联合主办的全国质谱学术大会定名为“2018年中国质谱学术大会”，定于2018年11月23-26日在广州市举办。 本次会议由中国广州分析测试中心、中山大学承办，广东省分析测试协会及广东省质谱学会协办。
                         </p>
                     </div>
@@ -322,7 +322,7 @@
                         <img src="./i/sqch/编组3@2x.png" />
                     </div>
                     <div class="value-pack">
-                        <input id="company" type="text" placeholder="请输入您的企业名称" />
+                        <input id="conpanyName" type="text" placeholder="请输入您的企业名称" />
                     </div>
                 </div>
                 <div class="form-item-pack lxr-pack">
@@ -331,7 +331,7 @@
                     </div>
                     <div class="value-pack">
                         <div class="input-pack">
-                            <input id="contact" type="text" placeholder="请输入联系人" />
+                            <input id="contractName" type="text" placeholder="请输入联系人" />
                         </div>
                         <div class="checkbox-pack">
                             <div style="margin-right: 8px;" value="0" class="checked male checkbox-item-pack">
@@ -350,7 +350,7 @@
                         <img src="./i/sqch/编组4备份@2x.png" />
                     </div>
                     <div class="value-pack">
-                        <input id="phone" type="tel" placeholder="请输入联系电话" />
+                        <input id="contractNo" type="tel" placeholder="请输入联系电话" />
                     </div>
                 </div>
                 <div class="form-item-pack">
@@ -358,7 +358,7 @@
                         <img src="./i/sqch/编组4备份@2x(1).png" />
                     </div>
                     <div class="value-pack">
-                        <input id="number" type="number" placeholder="请输入参会人数" />
+                        <input id="mettingNum" type="number" placeholder="请输入参会人数" />
                     </div>
                 </div>
             </div>
@@ -384,64 +384,72 @@
 				// 初始化加载更多
 				mui.init({
 					swipeBack: true //启用右滑关闭功能
-				});
+                });
+                
+                initInfo()
 
 				$('.male').live('click', function(){
                     $('.male').removeClass('checked')
                     $(this).addClass('checked')
-					// window.location.href = 'personal.html'
                 })
                 
                 $('.submit').live('click', function(){
-                    var company = '';
-                    var contact = '';
-                    var male = 0;
-                    var phone = '';
-                    var number = 0;
-                    if ($.trim($('#company').val()) == '') {
+                    var conpanyName = '';
+                    var contractName = '';
+                    var sex = 0;
+                    var contractNo = '';
+                    var contentType = '';
+                    var mettingNum = 0;
+                    var hyInfo = JSON.parse(window.sessionStorage.hyInfo)
+                    if ($.trim($('#conpanyName').val()) == '') {
 						mui.alert('请输入您的企业名称', '平台服务', function () {});
 						return false
                     } else {
-                        company = $.trim($('#company').val())
+	                    conpanyName = $.trim($('#conpanyName').val())
                     }
-                    if ($.trim($('#contact').val()) == '') {
+                    if ($.trim($('#contractName').val()) == '') {
 						mui.alert('请输入联系人', '平台服务', function () {});
 						return false
                     } else {
-                        contact = $.trim($('#contact').val())
+	                    contractName = $.trim($('#contractName').val())
                     }
-                    male = $('.mid-pack .checked').attr('value')
-                    if ($.trim($('#phone').val()) == '') {
+	                sex = $('.mid-pack .checked').attr('value')
+                    if ($.trim($('#contractNo').val()) == '') {
 						mui.alert('请输入手机号', '平台服务', function () {});
 						return false
 					} else {
-                        if (!isPoneAvailable($.trim($('#phone').val()))) {
+                        if (!isPoneAvailable($.trim($('#contractNo').val()))) {
                             mui.alert('请输入正确格式的手机号', '平台服务', function () {});
                             return false
                         } else {
-                            phone = $.trim($('#phone').val())
+	                        contractNo = $.trim($('#contractNo').val())
                         }
                     }
-                    if ($.trim($('#number').val()) == '') {
+                    if ($.trim($('#mettingNum').val()) == '') {
 						mui.alert('请输入参会人数', '平台服务', function () {});
 						return false
                     } else {
-                        number = $.trim($('#number').val())
+                        mettingNum = $.trim($('#mettingNum').val())
                     }
                     $.ajax({
-							url: "http://47.92.216.253/tools/wechatpn.ashx?action=IntegralGiftOperate",
-							type: "post",
-							dataType: "json",
-							data: {
-								company: stripscript(company),
-								contact: stripscript(contact),
-								male: male,
-                                phone: stripscript(phone),
-                                number: number
-							},
+							url: "https://groundpushbff.kangyw.com/meeting/add",
+							type: 'POST',
+                            dataType: 'json',
+                            contentType: 'application/json',
+							data: JSON.stringify({
+                                meetingTheme: hyInfo.meetingTheme,
+                                startTime: hyInfo.startTime,
+                                meetingLocal: hyInfo.meetingLocal,
+                                mettingNum: mettingNum,
+                                conpanyName: stripscript(conpanyName),
+                                contractName: stripscript(contractName),
+                                contractNo: contractNo,
+                                contentType: '1',
+                                sex: sex
+							}),
 							success: function(result) {
-								if (result.state === 1) {
-									mui.alert(result.msg, '平台服务', function() {
+								if (result.code === 'K-000000') {
+									mui.alert('提交成功，感谢贵企业选择我们专业的服务调研产品！', '平台服务', function() {
 										console.info('你刚关闭了警告框');
 									});
 								} else {
@@ -451,13 +459,19 @@
 								}
 							},
 							error: function() {
-								mui.alert('获取调研意向单出错！', '平台服务', function() {
+								mui.alert('提交参会申请出错！', '平台服务', function() {
 									console.info('你刚关闭了警告框');
 								});
 							}
 						});
                 })
 
+                function initInfo () {
+                    var hyInfo = JSON.parse(window.sessionStorage.hyInfo)
+                    console.info(hyInfo)
+                    $('.hymc').html(hyInfo.meetingTheme)
+                    $('.hyjj').html(hyInfo.meetingDes)
+                }
 
                 function stripscript(s) {
 					var pattern = new RegExp("[%--`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]")        //格式 RegExp("[在中间定义特殊过滤字符]")
