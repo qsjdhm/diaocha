@@ -418,9 +418,25 @@
 					        html += '   </div>';
 					        for (var i=0; i<groupList[key].length; i++) {
 						        var startDate = new Date(groupList[key][i].startTime.replace(/-/g,"/"));
-                                var startStr = startDate.getHours()+':'+startDate.getMinutes();
+						        var startHoursStr = startDate.getHours()
+						        var startMinutesStr = startDate.getMinutes()
+						        if (startHoursStr < 10) {
+							        startHoursStr = '0'+startHoursStr
+                                }
+						        if (startMinutesStr < 10) {
+							        startMinutesStr = '0'+startMinutesStr
+						        }
+						        var startStr = startHoursStr+':'+startMinutesStr
 						        var endDate = new Date(groupList[key][i].endTime.replace(/-/g,"/"));
-						        var endStr = endDate.getHours()+':'+endDate.getMinutes();
+						        var endHoursStr = endDate.getHours()
+						        var endMinutesStr = endDate.getMinutes()
+						        if (endHoursStr < 10) {
+							        endHoursStr = '0'+endHoursStr
+						        }
+						        if (endMinutesStr < 10) {
+							        endMinutesStr = '0'+endMinutesStr
+						        }
+						        var endStr = endHoursStr+':'+endMinutesStr
                                 html += '<div startTime="'+groupList[key][i].startTime+'" endTime="'+groupList[key][i].endTime+'" meetingTheme="'+groupList[key][i].meetingTheme+'" meetingDes="'+groupList[key][i].meetingDes+'" meetingLocal="'+groupList[key][i].meetingLocal+'" class="schedule-item-white">';
 						        html += '   <div class="schedule-item-white-info">';
 						        html += '       <div class="time">';
