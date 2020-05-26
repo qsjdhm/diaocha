@@ -397,7 +397,7 @@
                         var groupKeyList = [];
                         var groupList = {};
 				        for (var i=0,len=result.context.meetingVOList.length; i<len; i++) {
-				        	var date = result.context.meetingVOList[i].startTime.split(' ')[0]
+                            var date = result.context.meetingVOList[i].startTime.split(' ')[0]
                             // 这一天数组中没有
 				            if (groupKeyList.indexOf(date) == -1) {
 					            groupKeyList.push(date)
@@ -412,12 +412,12 @@
 				        var html = '';
 				        for(var key in groupList){
                             var time = (key.split('-')[1]).replace(/\b(0+)/gi,"")+'月'+(key.split('-')[2]).replace(/\b(0+)/gi,"")+'日';
-					        html += '<div class="schedule">';
+                            html += '<div class="schedule">';
 					        html += '   <div class="schedule-title">';
 					        html += '       <span>'+time+'</span>';
 					        html += '   </div>';
 					        for (var i=0; i<groupList[key].length; i++) {
-						        var startDate = new Date(groupList[key][i].startTime.replace(/-/g,"/"));
+                                var startDate = new Date(groupList[key][i].startTime.replace(/\s/, 'T'))
 						        var startHoursStr = startDate.getHours()
 						        var startMinutesStr = startDate.getMinutes()
 						        if (startHoursStr < 10) {
@@ -426,8 +426,9 @@
 						        if (startMinutesStr < 10) {
 							        startMinutesStr = '0'+startMinutesStr
 						        }
-						        var startStr = startHoursStr+':'+startMinutesStr
-						        var endDate = new Date(groupList[key][i].endTime.replace(/-/g,"/"));
+                                var startStr = startHoursStr+':'+startMinutesStr
+                                
+                                var endDate = new Date(groupList[key][i].endTime.replace(/\s/, 'T'))
 						        var endHoursStr = endDate.getHours()
 						        var endMinutesStr = endDate.getMinutes()
 						        if (endHoursStr < 10) {
